@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin/admin.component'
-import { UserComponent } from './user/user.component';
+import { AdminComponent } from './components/navbar/admin/admin.component';
+import { UserComponent } from './components/navbar/user/user.component';
 import { AppComponent } from './app.component'
-import { LoginComponent } from './login/login.component';
-import { MainhomeComponent } from './mainhome/mainhome.component';
+import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
-import { NewBookComponent } from './adminMode/new-book/new-book.component';
-import { StockComponent } from './adminMode/stock/stock.component';
-import { CartsComponent } from './userMode/carts/carts.component';
-import { ShowproductsComponent } from './userMode/showproducts/showproducts.component';
-import { SearchComponent } from './userMode/search/search.component';
-import { HomeComponent } from './adminMode/home/home.component';
-import { ResetPasswordComponent } from './userMode/reset-password/reset-password.component';
-import { ManageUserComponent } from './adminMode/manage-user/manage-user.component';
+import { ManageproductComponent } from './components/adminMode/manageproduct/manageproduct.component';
+import { ManagepromotionComponent } from './components/adminMode/managepromotion/managepromotion.component';
+import { ShowproductComponent } from './components/userMode/showproduct/showproduct.component';
+
 const routes: Routes = [
   {path: 'home1', component: AppComponent},
   {path: 'login', component: LoginComponent},
@@ -22,31 +17,21 @@ const routes: Routes = [
     role: 'admin'
   }, children: [
     {
-      path: 'newbook', component: NewBookComponent
-    },{
-      path: 'stock', component: StockComponent
-    },{
-      path: 'Home' , component: HomeComponent
+      path: 'manageproduct', component: ManageproductComponent
     },
     {
-      path: 'Manage', component: ManageUserComponent
-    }
+      path: 'managepromotion', component: ManagepromotionComponent
+    },
   ]},
-  {path: 'user',component:ShowproductsComponent, canActivate: [AuthGuard],
+  
+  {path: 'user',component:UserComponent, canActivate: [AuthGuard],
   data: {
     role: 'customer'
   }, children: [
     {
-      path: 'cart', component:CartsComponent
+      path: 'showproduct', component: ShowproductComponent
     },
-    {
-      path: 'products', component:ShowproductsComponent
-    },
-    {
-      path: 'search', component:SearchComponent
-    },{
-      path: 'resetpassword', component:ResetPasswordComponent
-    }
+
   ]},
   {path: '',
     redirectTo: 'login',

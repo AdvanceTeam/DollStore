@@ -1,25 +1,33 @@
 [{
   "_id": {
-    "$oid": "617859b54e538da4e1176a30"
+    "$oid": "634bca1e059496e287513a7a"
   },
-  "username": "pote",
-  "password": "$2a$10$CZyzwO3bIwcHQgQ0/Cy1iuTvautoYX4Bp.dh3d9T.qXhWJDCvt3Yi",
+  "username": "member1",
+  "password": "$2a$10$kyBkAxVkjG3buF09uN.e3uTtWUBLBYQO4DtoMUc7xi1TGQzKhf5ze",
+  "role": "customer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634bca26059496e287513a7f"
+  },
+  "username": "member2",
+  "password": "$2a$10$8Jq8j439g9j6RbsLThmbhuIaBVBFXV3d1OvOXusBwc2r499C4pYye",
+  "role": "customer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "634cfccd432c3be0072dd99b"
+  },
+  "username": "admin1",
+  "password": "$2a$10$n4v5ytD8D4XbbVEkwi/yjuQpp68pfoZOnDMOyNrxvfmCtK1RymI5K",
   "role": "admin",
   "__v": 0
 },{
   "_id": {
-    "$oid": "625fc9c8286bd5a923858041"
+    "$oid": "634cfcd2432c3be0072dd9a0"
   },
-  "username": "kokowa",
-  "password": "$2a$10$SimQsUbIS9JcupcEoJIrtu.uvW5LJedh7fNqoPzHptl/wmc.WG9uS",
-  "role": "customer",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "6261183533264aaab12a4a75"
-  },
-  "username": "jojo",
-  "password": "$2a$10$3mIJiduhWMIDTghUiyYvkuY0OyFxjulr.bZNlV3htO7uAarpEhAOq",
-  "role": "customer",
+  "username": "admin2",
+  "password": "$2a$10$McgKMj12iAWCG.lkT.l./ukeJE7yU1Z3zLxaYhxiZa19Kj7enrEvC",
+  "role": "admin",
   "__v": 0
 }]

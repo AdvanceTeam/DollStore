@@ -6,52 +6,42 @@ import { AppComponent } from './app.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
+import { AdminComponent } from './components/navbar/admin/admin.component';
+import { UserComponent } from './components/navbar/user/user.component';
 import {CanActivate} from "@angular/router";
-import { LoginComponent } from './login/login.component';
-import { MainhomeComponent } from './mainhome/mainhome.component';
+import { LoginComponent } from './components/login/login.component';
 import { AngularWebStorageModule } from 'angular-web-storage';
-import { NewBookComponent } from './adminMode/new-book/new-book.component';
-import { StockComponent } from './adminMode/stock/stock.component';
-import { EditQuantityComponent } from './adminMode/edit-quantity/edit-quantity.component';
-import { ShowproductsComponent } from './userMode/showproducts/showproducts.component';
-import { CartsComponent } from './userMode/carts/carts.component';
-import { SearchComponent } from './userMode/search/search.component';
-import { BuyProductsComponent } from './userMode/buy-products/buy-products.component';
-import { DeleteCartComponent } from './userMode/delete-cart/delete-cart.component';
-import { HomeComponent,TruncatePipe } from './adminMode/home/home.component';
-import { ResetPasswordComponent } from './userMode/reset-password/reset-password.component';
-import { ManageUserComponent } from './adminMode/manage-user/manage-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';  
 import {MatButtonModule} from '@angular/material/button';
-import { CartV2Component } from './cart-v2/cart-v2.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PipeBookModule } from 'src/shared/pipe/pipe-book/pipe-book.module';
+import { ManageproductComponent } from './components/adminMode/manageproduct/manageproduct.component';
+import { ManagepromotionComponent } from './components/adminMode/managepromotion/managepromotion.component';
+import { ShowproductComponent } from './components/userMode/showproduct/showproduct.component';
+import { AddproductComponent } from './components/adminMode/addproduct/addproduct.component';
+import { EditproductComponent } from './components/adminMode/editproduct/editproduct.component';
+import { DeleteproductComponent } from './components/adminMode/deleteproduct/deleteproduct.component';
+import { ListproductComponent } from './components/userMode/listproduct/listproduct.component';
+import { DetailComponent } from './components/userMode/detail/detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     UserComponent,
     LoginComponent,
-    MainhomeComponent,
-    NewBookComponent,
-    StockComponent,
-    EditQuantityComponent,
-    ShowproductsComponent,
-    CartsComponent,
-    SearchComponent,
-    BuyProductsComponent,
-    DeleteCartComponent,
-    HomeComponent,
-    ResetPasswordComponent,
-    ManageUserComponent,
-    CartV2Component,
-    TruncatePipe,
+    ManagepromotionComponent,
+    ManageproductComponent,
+    ShowproductComponent,
+    AddproductComponent,
+    EditproductComponent,
+    DeleteproductComponent,
+    ListproductComponent,
+    DetailComponent,
+    
     
   ],
   imports: [

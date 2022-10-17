@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9ed7ff;">
+  <div class="container-fluid" >
+    <span class="navbar-brand" style="color: rgb(0, 0, 0);font-size: 35px;" >store</span>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" routerLink="showproduct" routerLinkActive="active" style="color: rgb(1, 6, 11);" >showproduct</a>
+     
+      </div>
+    </div>
+    
+    <div class="d-flex">
+      <span class="navbar-brand"  style="color:rgb(0, 0, 0);margin-right: 50px;margin-top: 10px;">user : {{user}}</span> 
+      <button class="btn btn-danger" type="submit" (click)="signout()">log out</button>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
