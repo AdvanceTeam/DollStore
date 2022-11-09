@@ -119,10 +119,10 @@ export class ShowproductsComponent implements OnInit {
 
   getCartById(){
     try {
-      const token = this.local.get('user').result.id;
-      this.CartV2Service.getCartByID(token).subscribe(
+      const user = this.local.get('user').result.id;
+      this.CartV2Service.getCartByID(user).subscribe(
         data => {
-          console.log(data.product);
+          // console.log(data.product);
           this.listCart = data.product;
           for (let index = 0; index < this.listCart.length; index++) {
             this.getBookById(this.listCart[index]);

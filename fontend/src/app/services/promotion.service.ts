@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,12 @@ export class PromotionService {
 
 
   promotion: any
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public local:LocalStorageService,) { }
 
   addPromotion(promotiondata:any){
-    return this.http.post<any>('http://localhost:3000/dollstore/promotions/add',promotiondata)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.post<any>('http://localhost:3000/dollstore/promotions/add',promotiondata,{headers:head_object})
       .pipe(map(data => {
         return data;
       }));
@@ -20,7 +23,9 @@ export class PromotionService {
 
 
   getPromotion(){
-    return this.http.get<any>('http://localhost:3000/dollstore/promotions/get')
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.get<any>('http://localhost:3000/dollstore/promotions/get',{headers:head_object})
       .pipe(map(data => {
         if(data){
           this.promotion = data;

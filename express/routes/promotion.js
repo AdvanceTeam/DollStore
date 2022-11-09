@@ -59,7 +59,7 @@ const getPromotion = () =>{
     });
 }
 
-router.route('/promotions/add').post((req,res)=>{
+router.route('/promotions/add').post(authorization,(req,res)=>{
     console.log('add');
     addpromotion(req.body)
         .then(result=>{
@@ -71,7 +71,7 @@ router.route('/promotions/add').post((req,res)=>{
         })
 });
 
-router.route('/promotions/get').get((req,res)=>{
+router.route('/promotions/get').get(authorization,(req,res)=>{
     console.log('get');
     getPromotion()
         .then(result => {
