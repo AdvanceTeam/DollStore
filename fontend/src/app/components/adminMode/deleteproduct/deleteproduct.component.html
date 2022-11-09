@@ -1,1 +1,53 @@
-<p>deleteproduct works!</p>
+<style>
+    .card-body {
+        color: rgb(75, 62, 62);
+    }
+
+    .column {
+        float: right;
+        width: 40%;
+        padding: 10px;
+        /* Should be removed. Only for demonstration */
+    }
+
+    .right {
+        width: 40%;
+    }
+
+    .left {
+        width: 60%;
+    }
+</style>
+
+<div class="rows">
+    <div class="col-md-12" style="background-color:rgb(252, 220, 220); margin: 10px; border-radius: 25px;">
+        <div class="card-title">
+            <form>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="form-group">
+                                <h2>Delete Product</h2>
+                                <div class="input-container">
+                                    <label for="">Product Name :</label>
+                                    <input type="product_name" class="form-control" formControlName="product_name">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 20px;">
+
+                            <!-- <button type="button" class="btn btn-warning"  (click)="signup()">Sign up</button>&nbsp; -->
+                            <!-- <button type="button" class="btn btn-secondary" (click)="goToDashBoard()">goToDashboard</button>&nbsp; -->
+                            <!-- <button type="button" class="btn btn-danger" (click)="signout()">Sign out</button> -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

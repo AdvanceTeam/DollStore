@@ -1,1 +1,45 @@
-<p>listproduct works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card"  style="width: 100%;height: auto;background-color: #ffffff;">
+      <div class="card-header">
+        ตุ๊กตาที่อยู่ในตะกร้าของคุณ
+      </div>
+      <div style="width: 100%;height: 38px;background-color: #88d6f9;">
+        <div class="table-responsive-md">
+          <table class="table table-striped table-inverse">
+            <thead class="thead-inverse">
+              <tr>
+                <th>สินค้า</th>
+                <th>ราคา</th>
+                <th>จำนวน(ตัว)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <tr *ngFor="let item of order.list; index as i">
+                <td scope="row">{{item.nameBook}}</td>
+                <td>{{item.costBook}}</td>
+                <td>{{item.quantity}}</td>
+  
+                <div style="width: 100%;height: 100%">
+                  <button mat-raised-button (click)="minusTocart(item.idBook)">
+                    <mat-icon>delete_outline</mat-icon>
+                  </button>
+                </div>
+              </tr>
+            </tbody>
+            <br><br>
+          </table>
+          <span style="font-size: 20px;font-weight: bold;">รวมค่าตุ๊กตา: {{order.totalPayment}} บาท</span>
+        </div>
+      </div>
+      </div>
+  </div>
+  
+    <div class="col-md-6">
+      <app-detail></app-detail>
+  </div>
+</div>  
+
+    
