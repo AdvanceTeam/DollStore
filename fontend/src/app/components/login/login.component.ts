@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('',[Validators.required]),
     role: new FormControl('')
+    // address: new FormControl('')
   })
 
   constructor(private auth:AuthServiceService,public local:LocalStorageService,private router: Router) { }

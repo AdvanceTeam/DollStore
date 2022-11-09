@@ -1,17 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9ed7ff;">
+  <div class="container-fluid" >
+    <span class="navbar-brand" style="color: rgb(0, 0, 0);font-size: 35px;" >store</span>
+    
+    <div class="d-flex">
+      <span class="navbar-brand"  style="color:rgb(0, 0, 0);margin-right: 50px;margin-top: 10px;">user : {{user}}</span> 
+      <button class="btn btn-danger" type="submit" (click)="signout()">log out</button>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+
 <div class="row">
   <div class="col-md-6">
     <div class="card"  style="width: 100%;height: auto;background-color: #ffffff;">
       <div class="card-header">
-        ตุ๊กตาที่อยู่ในตะกร้าของคุณ
+        Dolls in your cart
       </div>
       <div style="width: 100%;height: 38px;background-color: #88d6f9;">
         <div class="table-responsive-md">
           <table class="table table-striped table-inverse">
             <thead class="thead-inverse">
               <tr>
-                <th>สินค้า</th>
-                <th>ราคา</th>
-                <th>จำนวน(ตัว)</th>
+                <th>Products</th>
+                <th>Price</th>
+                <th>quantity</th>
                 <th></th>
               </tr>
             </thead>
@@ -31,7 +43,7 @@
             </tbody>
             <br><br>
           </table>
-          <span style="font-size: 20px;font-weight: bold;">รวมค่าตุ๊กตา: {{order.totalPayment}} บาท</span>
+          <span style="font-size: 20px;font-weight: bold;">Sum: {{order.totalPayment}} Bath</span>
         </div>
       </div>
       </div>
