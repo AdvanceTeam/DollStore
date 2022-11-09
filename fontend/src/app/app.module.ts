@@ -21,12 +21,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { PipeBookModule } from 'src/shared/pipe/pipe-book/pipe-book.module';
 import { ManageproductComponent } from './components/adminMode/manageproduct/manageproduct.component';
 import { ManagepromotionComponent } from './components/adminMode/managepromotion/managepromotion.component';
-import { ShowproductComponent } from './components/userMode/showproduct/showproduct.component';
+import { ShowproductsComponent } from './components/userMode/showproducts/showproducts.component';
 import { AddproductComponent } from './components/adminMode/addproduct/addproduct.component';
 import { EditproductComponent } from './components/adminMode/editproduct/editproduct.component';
 import { DeleteproductComponent } from './components/adminMode/deleteproduct/deleteproduct.component';
 import { ListproductComponent } from './components/userMode/listproduct/listproduct.component';
 import { DetailComponent } from './components/userMode/detail/detail.component';
+import { SearchComponent } from './components/userMode/search/search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,12 +37,14 @@ import { DetailComponent } from './components/userMode/detail/detail.component';
     LoginComponent,
     ManagepromotionComponent,
     ManageproductComponent,
-    ShowproductComponent,
+    ShowproductsComponent,
     AddproductComponent,
     EditproductComponent,
     DeleteproductComponent,
     ListproductComponent,
     DetailComponent,
+    SearchComponent,
+    
     
     
   ],

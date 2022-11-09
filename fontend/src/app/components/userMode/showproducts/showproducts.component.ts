@@ -6,14 +6,12 @@ import { CartV2Service } from 'src/app/services/cart-v2.service';
 import { OrderService } from 'src/app/services/order.service'
 import Swal from 'sweetalert2'
 import { FormControl, FormGroup, Validators} from '@angular/forms'
-
 @Component({
-  selector: 'app-listproduct',
-  templateUrl: './listproduct.component.html',
-  styleUrls: ['./listproduct.component.css']
+  selector: 'app-showproducts',
+  templateUrl: './showproducts.component.html',
+  styleUrls: ['./showproducts.component.css']
 })
-export class ListproductComponent implements OnInit {
-
+export class ShowproductsComponent implements OnInit {
   products: any;
   show : boolean = true;
   counter: any;
@@ -44,8 +42,6 @@ export class ListproductComponent implements OnInit {
     list:[]
   }
 
-
-
   constructor(
     private BookService: BookService, 
     public local:LocalStorageService,
@@ -53,7 +49,7 @@ export class ListproductComponent implements OnInit {
     private CartV2Service:CartV2Service,
     private OrderService:OrderService) 
   {
-
+    //this.onLoading()
   }
 
   ngOnInit(): void {
@@ -77,7 +73,7 @@ export class ListproductComponent implements OnInit {
   }
 
   receivData($event:any){
-    this.products = $event
+    this.products = $event;
   }
 
   receivCounter($event:any){
@@ -168,7 +164,7 @@ export class ListproductComponent implements OnInit {
       this.CartV2Service.updateCart({idUser:token ,item:idBook}).subscribe(
         data => {
 
-          // console.log(data);
+          //console.log(data);
           this.order = { userID:'',totalPayment:0,address:'', list:[] };
           this.sumBook = 0;
           this.getCartById();
@@ -214,44 +210,44 @@ export class ListproductComponent implements OnInit {
     
   }
 
-  // confirmOrder(){
-  //   this.order.userID = this.local.get('user').result.id;
-  //   Swal.fire({
-  //     title: 'ยืนยันการสั่งซื้อ?',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'ยืนยัน',
-  //     cancelButtonText: 'ยกเลิก'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.order.address = this.myGroup.value.location;
-  //       // console.log(this.order);
-  //       this.OrderService.addOrder(this.order).subscribe(
-  //         data => {
+  confirmOrder(){
+    this.order.userID = this.local.get('user').result.id;
+    Swal.fire({
+      title: 'ยืนยันการสั่งซื้อ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ยืนยัน',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.order.address = this.myGroup.value.location;
+        // console.log(this.order);
+        this.OrderService.addOrder(this.order).subscribe(
+          data => {
 
-  //           // console.log(data);
-  //                       this.order = { userID:'',totalPayment:0,address:'', list:[] };
-  //           this.sumBook = 0;
-  //           this.getCartById();
+            // console.log(data);
+                        this.order = { userID:'',totalPayment:0,address:'', list:[] };
+            this.sumBook = 0;
+            this.getCartById();
             
-  //         },
-  //         err => {
-  //          throw err;
-  //         }
-  //       )
+          },
+          err => {
+           throw err;
+          }
+        )
         
         
 
-  //       Swal.fire(
-  //         'บันทึก!',
-  //         'ระบบได้บันทึกคำสั่งซื้อแล้ว',
-  //         'success'
-  //       )
-  //     }
-  //   })
-  // }
+        Swal.fire(
+          'บันทึก!',
+          'ระบบได้บันทึกคำสั่งซื้อแล้ว',
+          'success'
+        )
+      }
+    })
+  }
 
   get validateLocation() { return this.myGroup.get('location') as FormControl }
 
