@@ -12,7 +12,8 @@ var Schema = require("mongoose").Schema;
 const userSchema = Schema({
     username: String,
     password: String,
-    role: String
+    role: String,
+    // address: String
 },{
     collection: 'users'
 })
@@ -48,7 +49,7 @@ const findUser = (username) =>{
                 reject(new Error('Cannot find username!'));
             }else{
                 if(data){
-                    resolve({id: data._id, username: data.username, password: data.password,role: data.role})
+                    resolve({id: data._id, username: data.username, password: data.password,role: data.role,address: data.address})
                     console.log(data.password);
                 }else{
                     reject(new Error('Cannot find username!'));

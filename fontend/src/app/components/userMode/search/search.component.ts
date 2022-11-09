@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit{
     
   search: any;
   keyword = new FormControl('');
+  help!: number;
   @Output() messageEvent = new EventEmitter<any>();
   
   constructor(private ps: BookService) { 
