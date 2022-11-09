@@ -18,7 +18,12 @@ export class DetailComponent implements OnInit {
   user = "";
   address = "";
 
-  constructor(public local:LocalStorageService,private router: Router) { }
+  oders: any;
+  constructor(public local:LocalStorageService
+    ,private router: Router
+    ,private orderservice: OrderService) { 
+      this.loaddata()
+    }
 
   ngOnInit(): void {
     this.user = this.local.get('user').result.username;
@@ -26,7 +31,21 @@ export class DetailComponent implements OnInit {
 
   }
 
-
+  loaddata(){
+    try{
+      this.orderservice.getOrders().subscribe({
+        next:data => {
+          this.oders = data;
+          console.log(data)
+        },
+        error:err => {
+          console.log(err);
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
+  }
   
   getName(){
     return this.name;
