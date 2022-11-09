@@ -11,9 +11,7 @@ import { FormControl, FormGroup, Validators} from '@angular/forms'
   styleUrls: ['./listproduct.component.css']
 })
 export class ListproductComponent implements OnInit {
-
   products: any;
-  show : boolean = true;
   counter: any;
   user = "";
   keyword = new FormControl('');
@@ -55,7 +53,6 @@ export class ListproductComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.local.get('user').result.username;
-    
     this.getCartById();
   }
 
@@ -72,14 +69,7 @@ export class ListproductComponent implements OnInit {
       console.log(error)
     }
   }
-
-  receivData($event:any){
-    this.products = $event
-  }
-
-  receivCounter($event:any){
-    this.counter = $event
-  }
+  
 
   
   getBookById(element:{item:String,quantity:number}){
@@ -147,33 +137,6 @@ export class ListproductComponent implements OnInit {
     
   }
 
-
-  async checkaddTocart(idBook:String){
-    // console.log("token user:")
-    // console.log(this.local.get('user').result.id);
-    const token = this.local.get('user').result.id;
-    console.log(idBook);
-    console.log("checkaddTocart working");
-    
-    try {
-      this.CartV2Service.updateCart({idUser:token ,item:idBook}).subscribe(
-        data => {
-
-          // console.log(data);
-          this.order = { userID:'',totalPayment:0,address:'', list:[] };
-          this.sumBook = 0;
-          this.getCartById();
-          
-        },
-        err => {
-         throw err;
-        }
-      )
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async minusTocart(idBook:String){
     // console.log("token user:")
     // console.log(this.local.get('user').result.id);
@@ -200,49 +163,11 @@ export class ListproductComponent implements OnInit {
     }
   }
 
-  exposureTocart(item:any){
-    console.log(item);
-    
+  signout(){
+    this.local.clear();
+    const loggedIn = localStorage.getItem('STATE');
+    this.router.navigate(['login']);
   }
-
-  // confirmOrder(){
-  //   this.order.userID = this.local.get('user').result.id;
-  //   Swal.fire({
-  //     title: 'ยืนยันการสั่งซื้อ?',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'ยืนยัน',
-  //     cancelButtonText: 'ยกเลิก'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.order.address = this.myGroup.value.location;
-  //       // console.log(this.order);
-  //       this.OrderService.addOrder(this.order).subscribe(
-  //         data => {
-
-  //           // console.log(data);
-  //                       this.order = { userID:'',totalPayment:0,address:'', list:[] };
-  //           this.sumBook = 0;
-  //           this.getCartById();
-            
-  //         },
-  //         err => {
-  //          throw err;
-  //         }
-  //       )
-        
-        
-
-  //       Swal.fire(
-  //         'บันทึก!',
-  //         'ระบบได้บันทึกคำสั่งซื้อแล้ว',
-  //         'success'
-  //       )
-  //     }
-  //   })
-  // }
 
   get validateLocation() { return this.myGroup.get('location') as FormControl }
 
