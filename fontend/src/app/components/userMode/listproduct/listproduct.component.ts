@@ -3,8 +3,6 @@ import { BookService } from 'src/app/services/book.service';
 import { LocalStorageService } from 'angular-web-storage';
 import { Router } from '@angular/router';
 import { CartV2Service } from 'src/app/services/cart-v2.service';
-import { OrderService } from 'src/app/services/order.service'
-import Swal from 'sweetalert2'
 import { FormControl, FormGroup, Validators} from '@angular/forms'
 
 @Component({
@@ -50,8 +48,7 @@ export class ListproductComponent implements OnInit {
     private BookService: BookService, 
     public local:LocalStorageService,
     private router: Router,
-    private CartV2Service:CartV2Service,
-    private OrderService:OrderService) 
+    private CartV2Service:CartV2Service) 
   {
 
   }
@@ -82,12 +79,6 @@ export class ListproductComponent implements OnInit {
 
   receivCounter($event:any){
     this.counter = $event
-  }
-
-  signOut(){
-    this.local.clear();
-    const loggedIn = localStorage.getItem('STATE');
-    this.router.navigate(['login']);
   }
 
   

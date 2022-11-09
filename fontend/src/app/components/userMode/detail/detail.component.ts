@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
+import { FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-detail',
@@ -12,6 +14,7 @@ export class DetailComponent implements OnInit {
   name!: string;
   year!: number;
   user = "";
+  address = "";
 
   constructor(public local:LocalStorageService,private router: Router) { }
 
