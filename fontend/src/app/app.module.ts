@@ -27,6 +27,23 @@ import { EditproductComponent } from './components/adminMode/editproduct/editpro
 import { DeleteproductComponent } from './components/adminMode/deleteproduct/deleteproduct.component';
 import { ListproductComponent } from './components/userMode/listproduct/listproduct.component';
 import { DetailComponent } from './components/userMode/detail/detail.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+ export const DateFormats = {
+            parse: {
+                dateInput: ['YYYY-MM-DD']
+            },
+            display: {
+                dateInput: 'YYYY-MM-DD',
+                monthYearLabel: 'MMM YYYY',
+                dateA11yLabel: 'LL',
+                monthYearA11yLabel: 'MMMM YYYY',
+            },
+        };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,8 +74,16 @@ import { DetailComponent } from './components/userMode/detail/detail.component';
     MatBadgeModule,
     MatTabsModule,
     PipeBookModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+
+    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

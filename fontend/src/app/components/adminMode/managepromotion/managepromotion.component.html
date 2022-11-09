@@ -1,70 +1,99 @@
-
 <div class="container" style="margin-top: 60px;">
     <div class="row">
-        <div >
-            <button class="btn" (click)=" backClicked()" style="color: rgb(0, 0, 0);background-color: #82f7a1;margin-left: 500px;border-radius: 20px;border: solid"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Manage Product</button>
+        <div>
+            <button class="btn" (click)=" backClicked()"
+                style="color: rgb(0, 0, 0);background-color: #82f7a1;margin-left: 500px;border-radius: 20px;border: solid"><i
+                    class="fa fa-chevron-left"></i>&nbsp;&nbsp;Manage Product</button>
         </div>
         <div class="col-md-6">
-            <div >
+            <div>
                 <div class="card-title text-left">
                     <h1>Manage Promotion</h1>
                     <div class="col-md-12">
-                </div>
-                <form>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-container">
-                                        <label for="">Name Promotion</label>
-                                        <input type="username" class="form-control"
-                                            formControlName="username">
-                                        <br/>
-                        
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-container">
-                                        <label for="">percent price</label>
-                                        <input type="password" class="form-control"
-                                            formControlName="password">
-                                            <br/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-container">
-                                        <label for="">Time Start</label>
-                                        <input type="password" class="form-control"
-                                            formControlName="password">
-                                            <br/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-container">
-                                        <label for="">Time Stop</label>
-                                        <input type="password" class="form-control"
-                                            formControlName="password">
-                                       
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12" style="margin-top: 20px;">
-                                
-                                <!-- <button type="button" class="btn btn-warning"  (click)="signup()">Sign up</button>&nbsp; -->
-                                <!-- <button type="button" class="btn btn-secondary" (click)="goToDashBoard()">goToDashboard</button>&nbsp; -->
-                                <!-- <button type="button" class="btn btn-danger" (click)="signout()">Sign out</button> -->
-                            </div>
-                        </div>
                     </div>
-                </form>
+                    <form [formGroup]="promotionFrom">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-container">
+                                            <label for="">Name Promotion</label>
+                                            <input type="text" class="form-control" formControlName="name">
+                                            <div *ngIf ="name?.errors && (name?.dirty || name?.touched)" class = "alert alert-danger">
+                                                <div *ngIf = "name?.errors?.['required']">
+                                                    name is required
+                                                </div>                                        
+                                            </div>
+                                            <br />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-container">
+                                            <label for="">percent price (%)</label>
+                                            <input type="text" class="form-control" formControlName="percent">
+                                            <div *ngIf="percent?.invalid && (percent?.dirty || percent?.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="percent?.errors?.['required']">
+                                                percent is required.
+                                            </div>
+                                            <div *ngIf="percent?.errors?.['min']">
+                                                percent must be between (1-100)
+                                            </div>
+                                            <div *ngIf="percent?.errors?.['max']">
+                                                percent must be between (1-100)
+                                            </div>
+                                        </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <div class="input-container">
+                                            <label for="">Time Start</label>
+                                            <input type="text" class="form-control" formControlName="timestart">
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-container">
+                                            <label for="">Time Stop</label>
+                                            <input type="text" class="form-control" formControlName="timestop">
+
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Enter a date range</mat-label>
+                                            <mat-date-range-input [rangePicker]="picker">
+                                              <input matStartDate placeholder="Start date" formControlName="timestart"> 
+                                              <input matEndDate placeholder="End date" formControlName="timestop">
+                                            </mat-date-range-input>
+                                            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-date-range-picker #picker></mat-date-range-picker>
+                                          </mat-form-field>
+                                    </div>
+                                   
+                                      
+                                    
+
+
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12" style="margin-top: 20px;">
+                                    <button type="button" class="btn btn-primary" (click)="addpromotion()">Add</button>&nbsp;
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3">
+
             </div>
         </div>
-        <div class="col-md-3">
-
-        </div>
     </div>
-</div>
