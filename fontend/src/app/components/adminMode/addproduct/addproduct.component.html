@@ -23,32 +23,32 @@
                                 <h2>Add Product</h2>
                                 <div class="input-container">
                                     <label for="">Product Name :</label>
-                                    <input type="product_name" class="form-control" formControlName="product_name">
+                                    <input type="product_name" class="form-control" formControlName="productForm.product_name">
 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Price : </label>
-                                    <input type="price" class="form-control" formControlName="price">
+                                    <input type="price" class="form-control" formControlName="productForm.price">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Stock : </label>
-                                    <input type="stock" class="form-control" formControlName="stock">
+                                    <input type="stock" class="form-control" formControlName="productForm.stock">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Promotion : </label>
-                                    <input type="promotion" class="form-control" formControlName="promotion">
+                                    <input type="promotion" class="form-control" formControlName="productForm.promotion">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Detail :</label>
-                                    <textarea class="form-control" rows="5" id="detail"></textarea><br />
+                                    <textarea class="form-control" rows="5" id="productForm.detail"></textarea><br />
                                     <!-- <textarea [(ngModel)]="comment" class="form-control" rows="5" id="comment"></textarea><br/> -->
                                 </div>
                             </div>
@@ -57,10 +57,11 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
-                                  <input type="file" class="form-control-file" formControlName='file'>
+                                  <input type="file" class="form-control-file" formControlName='productForm.file'>
                                   <!-- <input type="file" class="form-control-file" formControlName='file' (change)="onChangeImg($event)"> -->
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-primary" style="position: absolute;" (click)="addProduct()">Add</button>&nbsp;
 
 
                         </div>
