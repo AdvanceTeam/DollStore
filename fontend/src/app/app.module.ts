@@ -33,18 +33,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
- export const DateFormats = {
-            parse: {
-                dateInput: ['YYYY-MM-DD']
-            },
-            display: {
-                dateInput: 'YYYY-MM-DD',
-                monthYearLabel: 'MMM YYYY',
-                dateA11yLabel: 'LL',
-                monthYearA11yLabel: 'MMMM YYYY',
-            },
-        };
 import { SearchComponent } from './components/userMode/search/search.component';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -81,9 +75,7 @@ import { SearchComponent } from './components/userMode/search/search.component';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule,
-
-    
+    MatNativeDateModule,    
   ],
   providers: [
 

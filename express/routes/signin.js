@@ -76,7 +76,7 @@ router.route('/signin')
         console.log(status);
         //สร้าง token ขึ้นมา
         if(status){
-            const token = jwt.sign(result, key, {expiresIn: 60*5});
+            const token = jwt.sign(result, key, {expiresIn: "2d"});
             res.status(200).json({result, token, status});
             console.log(token)
         }else{

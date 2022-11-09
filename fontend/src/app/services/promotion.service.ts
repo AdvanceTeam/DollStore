@@ -28,6 +28,7 @@ export class PromotionService {
     return this.http.get<any>('http://localhost:3000/dollstore/promotions/get',{headers:head_object})
       .pipe(map(data => {
         if(data){
+          console.log(data)
           this.promotion = data;
         }
         return this.promotion;

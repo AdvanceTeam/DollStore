@@ -19,6 +19,8 @@ export class DetailComponent implements OnInit {
     this.user = this.local.get('user').result.username;
   }
 
+
+  
   getName(){
     return this.name;
   }
