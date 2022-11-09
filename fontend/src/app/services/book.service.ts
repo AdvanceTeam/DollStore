@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
+import {cartsType} from '../cart.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,19 @@ export class BookService {
   products: any;
   search: any;
   fromproduct: any;
+  counter: number = 0;
+  sumPrice: number = 0;
+  cart: cartsType = []
 
   constructor(private http:HttpClient) { }
+
+  add(p_id: number){
+    this.counter += 1;
+  }
+
+  getCounter(){
+    return this.counter;
+  }
 
   addProduct(product : any){
     return this.http.post<any>('http://localhost:3000/bookstore/addbook', product)
@@ -24,7 +36,7 @@ export class BookService {
     .pipe(map(data => {
       if (data) {
         this.products = data;
-        //console.log(this.products);
+        console.log(this.products);
       }
       return this.products;
     }))
