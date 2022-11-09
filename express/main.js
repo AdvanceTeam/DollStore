@@ -45,6 +45,7 @@ expressApp.use('/bookstore', require('./routes/bool'))
 expressApp.use('/bookstore', require('./routes/order'))
 expressApp.use('/bookstore', require('./routes/cart'))
 
+expressApp.use('/dollstore', require('./routes/promotion'))
 
 
 

@@ -1,0 +1,16 @@
+<div class="container-fluid" style="margin-top:30px">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <div class="form-group">
+          <div style="display: inline-block;margin-right: 20px;">
+            <input  type="text"  name="search" class="form-control" style="width: min-content" [formControl]="keyword" placeholder="หาตุ๊กตาประเภทไหนจ๊ะ">
+          </div>
+          <div style="display: inline-block;">
+          <button  type="button" class="btn btn-outline-primary" (click)="onSearch1()">Search</button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

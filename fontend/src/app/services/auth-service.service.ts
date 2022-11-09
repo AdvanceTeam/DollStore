@@ -47,7 +47,7 @@ export class AuthServiceService {
     
       getRole() {
         //this.roleAs = localStorage.getItem('ROLE')+'';
-        console.log('getRole func-- returen --->'+ this.roleAs)
+        console.log('getRole func-- return --->'+ this.roleAs)
         //console.log(this.roleAs);
         let data = String(localStorage.getItem('ROLE'));
         //route.data.role.indexOf(userRole)
