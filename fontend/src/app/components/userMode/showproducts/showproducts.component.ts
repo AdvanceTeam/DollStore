@@ -122,8 +122,8 @@ export class ShowproductsComponent implements OnInit {
     try {
       const token = this.local.get('user').result.id;
       this.CartV2Service.getCartByID(token).subscribe(
-        {next: data => {
-          //console.log(data.product);
+        data => {
+          console.log(data.product);
           this.listCart = data.product;
           for (let index = 0; index < this.listCart.length; index++) {
             this.getBookById(this.listCart[index]);
@@ -137,10 +137,10 @@ export class ShowproductsComponent implements OnInit {
           console.log(this.sumBook);
           
         },
-        error: err => {
+        err => {
          throw err;
         }
-      }
+      
       )
 
     } catch (error) {
