@@ -10,12 +10,14 @@ import { BookService } from '../../../services/book.service'
 })
 export class AddproductComponent implements OnInit {
 
+  productPromotion: string[] = ['Sale Sale','SaSa LeLe','Sale99'];
+
   productForm = new FormGroup({
-    product_name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required]),
-    promotion: new FormControl('', [Validators.required]),
     detail: new FormControl('', [Validators.required]),
+    promotion: new FormControl(''),
     file: new FormControl('', [Validators.required]),
   });
 

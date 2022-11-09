@@ -9,12 +9,11 @@
         padding: 10px;
         /* Should be removed. Only for demonstration */
     }
-
 </style>
 
-<div class="row"  >
+<div class="row">
     <div class="col-md-12" style="background-color:rgb(220, 252, 230); margin: 10px; border-radius: 25px;">
-        <div class="card-title" >
+        <div class="card-title">
             <form>
                 <div class="card-body">
                     <div class="row">
@@ -23,32 +22,40 @@
                                 <h2>Add Product</h2>
                                 <div class="input-container">
                                     <label for="">Product Name :</label>
-                                    <input type="product_name" class="form-control" formControlName="productForm.product_name">
+                                    <input type="product_name" class="form-control" formControlName="name">
 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Price : </label>
-                                    <input type="price" class="form-control" formControlName="productForm.price">
+                                    <input type="price" class="form-control" formControlName="price">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Stock : </label>
-                                    <input type="stock" class="form-control" formControlName="productForm.stock">
+                                    <input type="stock" class="form-control" formControlName="stock">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-container">
-                                    <label for="">Promotion : </label>
-                                    <input type="promotion" class="form-control" formControlName="productForm.promotion">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Promotion:
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="promotion">
+                                            <option value=""></option>
+                                            <option *ngFor="let item of productPromotion" [value]="item">{{item}}
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Detail :</label>
-                                    <textarea class="form-control" rows="5" id="productForm.detail"></textarea><br />
+                                    <textarea class="form-control" rows="5" id="detail"></textarea><br />
                                     <!-- <textarea [(ngModel)]="comment" class="form-control" rows="5" id="comment"></textarea><br/> -->
                                 </div>
                             </div>
@@ -57,21 +64,19 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
-                                  <input type="file" class="form-control-file" formControlName='productForm.file'>
-                                  <!-- <input type="file" class="form-control-file" formControlName='file' (change)="onChangeImg($event)"> -->
+                                    <input type="file" class="form-control-file" formControlName="file">
+                                    <!-- <input type="file" class="form-control-file" formControlName='file' (change)="onChangeImg($event)"> -->
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary" style="position: absolute;" (click)="addProduct()">Add</button>&nbsp;
+
 
 
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" style="margin-top: 20px;">
-
-                            <!-- <button type="button" class="btn btn-warning"  (click)="signup()">Sign up</button>&nbsp; -->
-                            <!-- <button type="button" class="btn btn-secondary" (click)="goToDashBoard()">goToDashboard</button>&nbsp; -->
-                            <!-- <button type="button" class="btn btn-danger" (click)="signout()">Sign out</button> -->
+                        <div class="col-md-12" style="margin-top: 20px; margin-bottom: 20px;">
+                            <button type="button" class="btn btn-primary" style="position: absolute;"
+                                (click)="addProduct()">Add</button>&nbsp;
                         </div>
                     </div>
                 </div>

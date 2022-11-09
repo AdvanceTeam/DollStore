@@ -28,7 +28,7 @@
 
     <h2>Theme Mode : 
         <button type="button" class="btn btn-primary btn-sm float-right"
-            (click)="toggleTheme()">{{ theme ? 'light' : 'dark'}}</button>
+            (click)="toggleTheme()" [(ngModel)]="theme" >{{ themeColor ? 'light' : 'dark'}}</button>
     </h2>
 
     <div class="row">
