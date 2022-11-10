@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-<<<<<<< HEAD
-import { LocalStorageService } from 'angular-web-storage';
-=======
->>>>>>> 139ac57bfe294a4a29f7484e53bd2c6745e1af6a
 import { map } from 'rxjs/operators'
 import {cartsType} from '../cart.model';
 import { LocalStorageService } from 'angular-web-storage';
@@ -19,11 +15,7 @@ export class BookService {
   sumPrice: number = 0;
   cart: cartsType = []
 
-<<<<<<< HEAD
-  constructor(private http:HttpClient, public local:LocalStorageService,) { }
-=======
   constructor(private http: HttpClient, public local:LocalStorageService,) { }
->>>>>>> 139ac57bfe294a4a29f7484e53bd2c6745e1af6a
 
   add(p_id: number){
     this.counter += 1;
@@ -67,20 +59,20 @@ export class BookService {
   updateBook(product: any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/bookstore/updateData', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
-  updateBookByName(product: any){
-    let token = this.local.get('user').token
-    let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
-    .pipe(map(data =>{
-      return data;
-    }))
-  }
+  // updateBookByName(product: any){
+  //   let token = this.local.get('user').token
+  //   let head_object = new HttpHeaders().set("authorization",token)
+  //   return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
+  //   .pipe(map(data =>{
+  //     return data;
+  //   }))
+  // }
  
 
   getSomePs(p_id:any){

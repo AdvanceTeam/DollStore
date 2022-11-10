@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BookService } from '../../../services/book.service'
@@ -23,19 +23,22 @@ export class EditproductComponent implements OnInit {
     file: new FormControl('', [Validators.required]),
   });
 
-  
+  products : any
+  @Input() itemid: any;
+
   previewLoaded: boolean = false;
   promotions: any;
 
-  constructor(private ps: BookService,private promotionservice: PromotionService) {
+  constructor(private ps: BookService,private promotionservice: PromotionService,private BookService: BookService) {
     this.loadpromotion()
+    this.onLoadingProduct()
    }
 
   ngOnInit(): void {
   }
 
   UpdateProduct() {
-    this.ps.updateBook(this.productForm.value).subscribe(
+    this.ps.updateBook(this.itemid).subscribe(
       data => {
         console.log(data)
         alert('Product updated successfully');
@@ -81,6 +84,22 @@ export class EditproductComponent implements OnInit {
       console.log(err);
     }
   }
+
+  onLoadingProduct(){
+    try{
+      this.BookService.getProducts().subscribe(
+        data =>{
+          this.products = data;
+          console.log(data)
+        },
+        err =>{
+          console.log(err)
+        });
+    }catch(error){
+      console.log(error)
+    }
+  }
+
 
   resetForm() {
     this.productForm.reset();
