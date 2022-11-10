@@ -4,6 +4,8 @@ var expressApp = expressFunction();
 
 const router = expressFunction.Router();
 var Schema = require('mongoose').Schema;
+const authorization = require('../config/authorize')
+
 
 const orderSchema = Schema({
     userID:String,
@@ -111,7 +113,7 @@ const deleteProduct = (productID) =>{
 }
 
 
-router.route('/addorder').post((req, res)=>{
+router.route('/addorder').post(authorization,(req, res)=>{
     console.log('add order');
     // console.log(req.body);
     addProducts(req.body)
@@ -126,7 +128,7 @@ router.route('/addorder').post((req, res)=>{
 })
 
 
-router.route('/getorder').get((req,res)=>{
+router.route('/getorder').get(authorization,(req,res)=>{
     console.log('get');
     getProduct().then( result => {
         //console.log(result);
@@ -137,7 +139,7 @@ router.route('/getorder').get((req,res)=>{
     })
 })
 
-router.route('/deleteorder').post((req,res)=>{
+router.route('/deleteorder').post(authorization,(req,res)=>{
     console.log("express delete bool");
     console.log(req.body._id);
 
@@ -151,7 +153,7 @@ router.route('/deleteorder').post((req,res)=>{
 })
 
 
-router.route('/updateStateOrder').put( (req,res)=>{
+router.route('/updateStateOrder').put(authorization,(req,res)=>{
 
     var query = {"_id":req.body._id};
 
