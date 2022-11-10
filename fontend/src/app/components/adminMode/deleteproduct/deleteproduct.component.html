@@ -22,32 +22,36 @@
 <div class="rows">
     <div class="col-md-12" style="background-color:rgb(252, 220, 220); margin: 10px; border-radius: 25px;">
         <div class="card-title">
-            <form>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12" >
-                            <div class="form-group">
-                                <h2>Delete Product</h2>
-                                <div class="input-container">
-                                    <label for="">Product Name :</label>
-                                    <input type="product_name" class="form-control" formControlName="product_name">
+            <div class="card-body">
+            <h2 style="margin-left:20px; margin-top:30px; ">Delete Product</h2>
+            <div class="table-responsive-md">
+                <table class="table table-striped table-inverse">
+                    <tbody>
+                        <tr *ngFor="let item of products; index as i">
 
+                            <td scope="row">{{item.name}}</td>
+
+
+
+                            <td>
+                                <div class="row row-cols-1">
+
+                                    <div class="col" style="margin-top: 5px;">
+                                        <a class="btn btn-danger" role="button" style="width: 200px;"
+                                            (click)="deleteUser(item._id)">
+                                            <i>
+                                                Delete
+                                            </i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            </td>
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top: 20px;">
-
-                            <!-- <button type="button" class="btn btn-warning"  (click)="signup()">Sign up</button>&nbsp; -->
-                            <!-- <button type="button" class="btn btn-secondary" (click)="goToDashBoard()">goToDashboard</button>&nbsp; -->
-                            <!-- <button type="button" class="btn btn-danger" (click)="signout()">Sign out</button> -->
-                        </div>
-                    </div>
-                </div>
-            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
+    </div>
 </div>

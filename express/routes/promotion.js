@@ -9,8 +9,8 @@ const authorization = require('../config/authorize')
 const promotionSchema = Schema({
    name: String,
    percent: Number,
-   timestart: String,
-   timestop: String,
+   datestart: String,
+   datestop: String,
 },{
     collection: 'promotions'
 });

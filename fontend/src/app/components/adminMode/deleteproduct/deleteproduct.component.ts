@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { BookService } from '../../../services/book.service'
 
 @Component({
   selector: 'app-deleteproduct',
@@ -7,9 +10,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteproductComponent implements OnInit {
 
-  constructor() { }
+  products: any;
+
+  previewLoaded: boolean = false;
+
+  constructor(private ps: BookService) { 
+    this.onLoading();
+  }
 
   ngOnInit(): void {
   }
+
+  deleteUser(item:any){
+    console.log("กด delete",item);
+    
+    try {
+      this.ps.deleteProduct(item).subscribe(
+        data => {
+          //this.products = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    this.onLoading();
+  }
+
+  onLoading(){
+    try {
+      this.ps.getProducts().subscribe(
+        data => {
+          this.products = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
 
 }
