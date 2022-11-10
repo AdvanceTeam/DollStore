@@ -53,8 +53,8 @@ export class ManagepromotionComponent implements OnInit {
   promotionFrom = new FormGroup({
     name: new FormControl('', [Validators.required]),
     percent: new FormControl('', [Validators.required, Validators.max(100), Validators.min(1)]),
-    timestart: new FormControl('', [Validators.required]),
-    timestop: new FormControl('', [Validators.required]),
+    datestart: new FormControl('', [Validators.required]),
+    datestop: new FormControl('', [Validators.required]),
 
   })
 
