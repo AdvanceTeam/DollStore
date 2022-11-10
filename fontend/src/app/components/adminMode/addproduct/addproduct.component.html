@@ -12,16 +12,16 @@
 </style>
 
 <div class="row">
-    <div class="col-md-12" style="background-color:rgb(220, 252, 230); margin: 10px; border-radius: 25px;">
+    <div class="col-md-12" style=" margin: 10px; border-radius: 25px;" [ngStyle]="{'background-color': bgColor}">
         <div class="card-title">
             <form [formGroup]="productForm">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <h2>Add Product</h2>
+                                <h2 [ngStyle]="{'color': fontColor}" >Add Product</h2>
                                 <div class="input-container">
-                                    <label for="">Product Name :</label>
+                                    <label for="" [ngStyle]="{'color': fontColor}">Product Name :</label>
                                     <input type="text" class="form-control" formControlName="name">
 
                                 </div>
