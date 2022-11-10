@@ -4,6 +4,7 @@ var expressApp = expressFunction();
 
 const router = expressFunction.Router();
 const Schema = require('mongoose').Schema;
+const authorization = require('../config/authorize')
 
 
 const userSchema = Schema({
@@ -43,7 +44,7 @@ try {
     Cart = mongoose.model('carts',cartSchema);
 }
 
-router.route('/additemtocart').put(async (req, res)=>{
+router.route('/additemtocart').put(authorization,async (req, res)=>{
     try {
         console.log("req.body =");
         console.log(req.body);
@@ -143,7 +144,7 @@ router.route('/additemtocart').put(async (req, res)=>{
     }
 })
 
-router.route('/minustocart').put(async (req, res)=>{
+router.route('/minustocart').put(authorization,async (req, res)=>{
     try {
       
         const exist = await User.findOne({name:req.body.idUser})
@@ -202,7 +203,7 @@ router.route('/minustocart').put(async (req, res)=>{
     }
 })
 
-router.route('/getcart/:id').get(async (req,res)=>{
+router.route('/getcart/:id').get(authorization,async (req,res)=>{
         try {
             console.log("get chart By ID working");
             const result = await Cart.findOne({"user":req.params.id})

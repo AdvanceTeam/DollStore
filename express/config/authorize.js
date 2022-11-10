@@ -6,15 +6,17 @@ const authorization = ((req,res,next) => {
     if(token === undefined){
         return res.status(401).json({
             "status":401,
-            "message": 'Unauthorized'
+            "message": 'Unauthorizednaaaaa'
         })
     }else{
         jwt.verify(token,key,(err,decode) => {
             if(err){
                 return res.status(401).json({
                     "status": 401,
-                    "message": 'Unauthorized'
-                })
+                    "message": 'Unauthorizednajaaa'
+                },
+                console.log(err))
+                
             }else{
                 console.log(decode)
                 next()

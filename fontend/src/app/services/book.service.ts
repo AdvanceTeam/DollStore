@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import {cartsType} from '../cart.model';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class BookService {
   sumPrice: number = 0;
   cart: cartsType = []
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient, public local:LocalStorageService,) { }
 
   add(p_id: number){
     this.counter += 1;
@@ -25,14 +26,18 @@ export class BookService {
   }
 
   addProduct(product : any){
-    return this.http.post<any>('http://localhost:3000/bookstore/addbook', product)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.post<any>('http://localhost:3000/bookstore/addbook', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
   getProducts(){
-    return this.http.get<any>('http://localhost:3000/bookstore/getAllBook')
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.get<any>('http://localhost:3000/bookstore/getAllBook',{headers:head_object})
     .pipe(map(data => {
       if (data) {
         this.products = data;
@@ -43,21 +48,27 @@ export class BookService {
   }
 
   deleteProduct(product : any){
-    return this.http.delete<any>('http://localhost:3000/bookstore/deletebook/'+product)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.delete<any>('http://localhost:3000/bookstore/deletebook/'+product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
   updateBook(product: any){
-    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
   updateBookByName(product: any){
-    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -69,7 +80,9 @@ export class BookService {
   }
 
   getBySearch(keyword:any){
-    return this.http.get<any>('http://localhost:3000/bookstore/search/'+keyword)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.get<any>('http://localhost:3000/bookstore/search/'+keyword,{headers:head_object})
     .pipe(map(data => {
       if (data) {
         this.search = data;
@@ -88,7 +101,9 @@ export class BookService {
   }
 
   getBookByID(id:String){
-    return this.http.get<any>('http://localhost:3000/bookstore/getBookByID/'+id)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.get<any>('http://localhost:3000/bookstore/getBookByID/'+id,{headers:head_object})
     .pipe(map(data => {
       return data;
     }))
