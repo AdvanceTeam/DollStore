@@ -33,17 +33,30 @@ export class AddproductComponent implements OnInit {
     this.ps.addProduct(this.productForm.value).subscribe(
       data => {
         console.log(data)
-        if(data){
           alert('Product added successfully');
-          this.productForm.reset();
-        }else{
-          alert('No data');
-        }
+          this.resetForm();
+          this.load();
       },
       err => {
         console.log(err);
       }
     );
+  }
+
+  load(){
+    try{
+      this.ps.getProducts().subscribe({
+        next:data => {
+          this.productForm = data;
+          console.log(data)
+        },
+        error:err => {
+          console.log(err);
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
   }
 
   onChangeImg(e: any) {
