@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BookService } from '../../../services/book.service'
+import { PromotionService } from 'src/app/services/promotion.service';
 
 @Component({
   selector: 'app-addproduct',
@@ -11,6 +12,7 @@ import { BookService } from '../../../services/book.service'
 export class AddproductComponent implements OnInit {
 
   productPromotion: string[] = ['Sale Sale','SaSa LeLe','Sale99'];
+  promotions: any;
 
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -24,7 +26,9 @@ export class AddproductComponent implements OnInit {
   
   previewLoaded: boolean = false;
 
-  constructor(private ps: BookService) { }
+  constructor(private ps: BookService,private promotionservice: PromotionService) {
+    this.loadpromotion()
+   }
 
   ngOnInit(): void {
   }
@@ -59,6 +63,22 @@ export class AddproductComponent implements OnInit {
     }
   }
 
+  
+  loadpromotion(){
+    try{
+      this.promotionservice.getPromotion().subscribe({
+        next:data => {
+          this.promotions = data;
+          console.log(data)
+        },
+        error:err => {
+          console.log(err);
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
+  }
   onChangeImg(e: any) {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];

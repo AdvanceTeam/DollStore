@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BookService } from '../../../services/book.service'
+import { PromotionService } from 'src/app/services/promotion.service';
 
 @Component({
   selector: 'app-editproduct',
@@ -24,8 +25,11 @@ export class EditproductComponent implements OnInit {
 
   
   previewLoaded: boolean = false;
+  promotions: any;
 
-  constructor(private ps: BookService) { }
+  constructor(private ps: BookService,private promotionservice: PromotionService) {
+    this.loadpromotion()
+   }
 
   ngOnInit(): void {
   }
@@ -60,6 +64,21 @@ export class EditproductComponent implements OnInit {
           });
         };
       }
+    }
+  }
+  loadpromotion(){
+    try{
+      this.promotionservice.getPromotion().subscribe({
+        next:data => {
+          this.promotions = data;
+          console.log(data)
+        },
+        error:err => {
+          console.log(err);
+        }
+      })
+    }catch(err){
+      console.log(err);
     }
   }
 

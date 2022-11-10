@@ -59,7 +59,9 @@
                                     <div class="form-group">
                                         <select class="form-control" formControlName="promotion">
                                           <option value=""></option>
-                                          <option *ngFor="let item of productPromotion" [value]="item">{{item}}</option>
+                                          <option *ngFor="let item of promotions; index as i">
+                                            {{item.name}}
+                                        </option>
                                         </select>
                                       </div>
                                 </div>

@@ -19,10 +19,11 @@
                                         <div class="input-container">
                                             <label for="">Name Promotion</label>
                                             <input type="text" class="form-control" formControlName="name">
-                                            <div *ngIf ="name?.errors && (name?.dirty || name?.touched)" class = "alert alert-danger">
-                                                <div *ngIf = "name?.errors?.['required']">
+                                            <div *ngIf="name?.errors && (name?.dirty || name?.touched)"
+                                                class="alert alert-danger">
+                                                <div *ngIf="name?.errors?.['required']">
                                                     name is required
-                                                </div>                                        
+                                                </div>
                                             </div>
                                             <br />
 
@@ -33,80 +34,86 @@
                                             <label for="">percent price (%)</label>
                                             <input type="text" class="form-control" formControlName="percent">
                                             <div *ngIf="percent?.invalid && (percent?.dirty || percent?.touched)"
-                                            class="alert alert-danger">
-                                            <div *ngIf="percent?.errors?.['required']">
-                                                percent is required.
+                                                class="alert alert-danger">
+                                                <div *ngIf="percent?.errors?.['required']">
+                                                    percent is required.
+                                                </div>
+                                                <div *ngIf="percent?.errors?.['min']">
+                                                    percent must be between (1-100)
+                                                </div>
+                                                <div *ngIf="percent?.errors?.['max']">
+                                                    percent must be between (1-100)
+                                                </div>
                                             </div>
-                                            <div *ngIf="percent?.errors?.['min']">
-                                                percent must be between (1-100)
-                                            </div>
-                                            <div *ngIf="percent?.errors?.['max']">
-                                                percent must be between (1-100)
-                                            </div>
-                                        </div>
                                             <br />
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <div class="input-container">
-                                            <label for="">Time Start</label>
-                                            <input type="text" class="form-control" formControlName="timestart">
-                                            <br />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-container">
-                                            <label for="">Time Stop</label>
-                                            <input type="text" class="form-control" formControlName="timestop">
-
-                                        </div>
-                                    </div> -->
                                     <div class="form-group">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Enter a date range</mat-label>
                                             <mat-date-range-input [rangePicker]="picker">
-                                              <input matStartDate placeholder="Start date" formControlName="timestart"> 
-                                              <input matEndDate placeholder="End date" formControlName="timestop">
+                                                <input matStartDate placeholder="Start date"
+                                                    formControlName="datestart">
+                                                <input matEndDate placeholder="End date" formControlName="datestop">
                                             </mat-date-range-input>
                                             <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-date-range-picker #picker></mat-date-range-picker>
-                                          </mat-form-field>
+                                            <mat-error *ngIf="promotionFrom.get('datestart')?.invalid || promotionFrom.get('datestop')?.invalid" >
+                                            
+                                            <mat-error *ngIf="promotionFrom.get('datestart')?.hasError('matStartDateInvalid')">
+                                                Invalid start date.
+                                              </mat-error>
+                                              <mat-error *ngIf="promotionFrom.get('datestart') == promotionFrom.get('datestop')">
+                                                The start date must not be the same as the end date.
+                                              </mat-error>
+                                              <mat-error *ngIf="promotionFrom.get('datestop')?.hasError('matEndDateInvalid')">
+                                                Invalid end date.
+                                              </mat-error>
+                                              <mat-error *ngIf="promotionFrom.get('datestart')?.hasError('required')">
+                                                startdate required.
+                                             </mat-error>
+                                             <mat-error *ngIf="promotionFrom.get('datestop')?.hasError('required')">
+                                                stopdate required.
+                                             </mat-error>
+                                            </mat-error> 
+                                        </mat-form-field>                                   
                                     </div>
-                                   
-                                      
-                                    
+
+
+
 
 
                                 </div>
-                                
+
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-12" style="margin-top: 20px;">
-                                    <button type="button" class="btn btn-primary" (click)="addpromotion()">Add</button>&nbsp;
+                                    <button type="button" class="btn btn-primary"
+                                        (click)="addpromotion()">Add</button>&nbsp;
 
                                 </div>
                             </div>
-                            <br/>
-                            <br/>
+                            <br />
+                            <br />
 
                             <table class="table table-striped table-inverse">
                                 <thead class="thead-inverse">
                                     <tr>
                                         <th>Name</th>
                                         <th>percent price (%)</th>
-                                        <th>timestart</th>
-                                        <th>timestop</th>                  
+                                        <th>datestart</th>
+                                        <th>datestop</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor= "let item of promotions; index as i">
+                                    <tr *ngFor="let item of promotions; index as i">
                                         <td>{{item.name}}</td>
                                         <td>{{item.percent}}</td>
-                                        <td>{{item.timestart | date:'dd-MM-yyyy'}}</td>
-                                        <td>{{item.timestop | date:'dd-MM-yyyy'}}</td>
-                            
+                                        <td>{{item.datestart | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{item.datestop | date:'dd-MM-yyyy'}}</td>
+
                                     </tr>
                                 </tbody>
                             </table>
