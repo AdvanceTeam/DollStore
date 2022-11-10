@@ -74,8 +74,8 @@ export class ShowproductsComponent implements OnInit {
   }
 
   getBookById(element:{item:String,quantity:number}){
-    this.BookService.getBookByID(element.item).subscribe(
-        data =>{
+    this.BookService.getBookByID(element.item).subscribe({
+        next:data =>{
           // console.log("get book by id");
           // console.log(data);
           
@@ -97,9 +97,10 @@ export class ShowproductsComponent implements OnInit {
             costBook:data.price
           })
         },
-        err =>{
+        error: err =>{
           console.log(err);
         }
+      }
     )
   }
 
@@ -108,7 +109,7 @@ export class ShowproductsComponent implements OnInit {
       const user = this.local.get('user').result.id;
       this.CartV2Service.getCartByID(user).subscribe(
         data => {
-          console.log(data.product);
+          //console.log(data.product);
           this.listCart = data.product;
           for (let index = 0; index < this.listCart.length; index++) {
             this.getBookById(this.listCart[index]);
@@ -125,6 +126,7 @@ export class ShowproductsComponent implements OnInit {
         err => {
          throw err;
         }
+      
       )
 
     } catch (error) {

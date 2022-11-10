@@ -4,6 +4,7 @@ var expressApp = expressFunction();
 
 const router = expressFunction.Router();
 var Schema = require('mongoose').Schema;
+const authorization = require('../config/authorize')
 
 
 const bookSchema = Schema({
@@ -77,7 +78,7 @@ const getBySearchProduct = (keyword) =>{
 }
 
 
-router.route('/search/:tag').get((req, res)=>{
+router.route('/search/:tag').get(authorization,(req, res)=>{
     console.log('search');
     getBySearchProduct(RegExp(req.params.tag,'i'))
     .then(result => {
@@ -91,7 +92,7 @@ router.route('/search/:tag').get((req, res)=>{
 
 
 
-router.route('/addbook').post((req, res)=>{
+router.route('/addbook').post(authorization,(req, res)=>{
     console.log('add');
     addProduct(req.body)
     .then(result => {
@@ -115,7 +116,7 @@ router.route('/updateBookfromuser').put( (req,res)=>{
 
 })
 
-router.route('/getAllBook').get((req,res)=>{
+router.route('/getAllBook').get(authorization,(req,res)=>{
     console.log('get');
     getProduct().then( result => {
         console.log(result);
@@ -126,7 +127,7 @@ router.route('/getAllBook').get((req,res)=>{
     })
 })
 
-router.route('/getBookByID/:id').get(async (req,res)=>{
+router.route('/getBookByID/:id').get(authorization,async (req,res)=>{
     try {
         console.log("get chart By ID working");
         const result = await Book.findOne({"_id":req.params.id})
@@ -158,7 +159,7 @@ const deleteProduct = (productID) =>{
 
 
 
-router.route('/deletebook/:id').delete((req,res)=>{
+router.route('/deletebook/:id').delete(authorization,(req,res)=>{
     console.log("express delete bool");
     //console.log("backend",req.body);
     console.log(req.params.id);
@@ -191,7 +192,7 @@ const updateProduct = (productID) =>{
             
         });
     }
-router.route('/updateQuantityBook').put( (req,res)=>{
+router.route('/updateQuantityBook').put(authorization,(req,res)=>{
 
     var query = {"_id":req.body._id};
 
