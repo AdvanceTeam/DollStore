@@ -5,6 +5,10 @@ var expressApp = expressFunction();
 const router = expressFunction.Router();
 var Schema = require('mongoose').Schema;
 const authorization = require('../config/authorize')
+<<<<<<< HEAD
+
+=======
+>>>>>>> 139ac57bfe294a4a29f7484e53bd2c6745e1af6a
 
 
 const bookSchema = Schema({
@@ -105,7 +109,7 @@ router.route('/addbook').post(authorization,(req, res)=>{
 })
 
 
-router.route('/updateBookfromuser').put( (req,res)=>{
+router.route('/updateBookfromuser').put(authorization,(req,res)=>{
 
     var query = {"name":req.body.name};
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { cartsType } from '../cart.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from 'angular-web-storage';
 import { map } from 'rxjs/operators'
 import { BookService } from 'src/app/services/book.service';
 @Injectable({
@@ -12,7 +13,7 @@ export class CartService {
   price: number = 0;
 
   stop = false;
-  constructor(private http:HttpClient, private BookService:BookService) { }
+  constructor(private http:HttpClient, private BookService:BookService, public local:LocalStorageService,) { }
 
   getFromBuy(item:any){
     this.carts.push(item) // เพิ่ม หนังสือเข้าไปเก็บ เป็น [{หนังสือ1},{หนังสือ2},{หนังสือ3}]
@@ -41,9 +42,11 @@ export class CartService {
   }
 
   addOrder(product : any){
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
     console.log('addOrder');
     console.log(product);
-    return this.http.post<any>('http://localhost:3000/bookstore/addorder', product)
+    return this.http.post<any>('http://localhost:3000/bookstore/addorder', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))

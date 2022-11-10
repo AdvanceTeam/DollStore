@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from 'angular-web-storage';
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -7,37 +8,46 @@ import { map } from 'rxjs/operators'
 })
 export class OrderService {
   products: any;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, public local:LocalStorageService,) { }
+  
 
   getOrders(){
-    return this.http.get<any>('http://localhost:3000/bookstore/getorder')
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.get<any>('http://localhost:3000/bookstore/getorder',{headers:head_object})
     .pipe(map(data => {
       if (data) {
         this.products = data;
-        //console.log(this.products);
+        //console.log("this is product",this.products);
       }
       return this.products;
     }))
   }
 
   deleteProduct(product : any){
-    return this.http.post<any>('http://localhost:3000/bookstore/deleteorder', product)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.post<any>('http://localhost:3000/bookstore/deleteorder', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
   addOrder(product : any){
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
     console.log('addOrder');
     console.log(product);
-    return this.http.post<any>('http://localhost:3000/bookstore/addorder', product)
+    return this.http.post<any>('http://localhost:3000/bookstore/addorder', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
   updateStateSend(item:any){
-    return this.http.put<any>('http://localhost:3000/bookstore/updateStateOrder', item)
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.put<any>('http://localhost:3000/bookstore/updateStateOrder', item,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
