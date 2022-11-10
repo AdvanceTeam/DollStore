@@ -33,8 +33,12 @@ export class AddproductComponent implements OnInit {
     this.ps.addProduct(this.productForm.value).subscribe(
       data => {
         console.log(data)
-        alert('Product added successfully');
-        this.productForm.reset();
+        if(data){
+          alert('Product added successfully');
+          this.productForm.reset();
+        }else{
+          alert('No data');
+        }
       },
       err => {
         console.log(err);

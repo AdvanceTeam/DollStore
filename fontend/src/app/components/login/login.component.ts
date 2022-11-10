@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             console.log('go to customer tap');
             this.router.navigate(['user/showproduct']);
           }
-          //alert('เข้าระบบแล้ว')
+          alert('เข้าระบบแล้ว')
           console.log(data._value)
         }
       },
