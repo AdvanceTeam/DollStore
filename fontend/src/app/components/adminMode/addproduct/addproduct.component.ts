@@ -45,13 +45,13 @@ export class AddproductComponent implements OnInit {
     if(theme =='light'){
       this.fontColor = this.darkColor;
       this.bgColor = this.lightColor;
+      console.log("light!!!")
     }
     else if(theme =='dark'){
       this.fontColor = this.lightColor;
       this.bgColor = this.darkColor;
+      console.log("Dark----")
     }
-
-    console.log("Toggle!!!")
   }
 
 
