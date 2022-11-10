@@ -10,35 +10,49 @@ import { BookService } from '../../../services/book.service'
 })
 export class DeleteproductComponent implements OnInit {
 
-  productName: string[] = ['Pikachu','Charmender','Eevee'];
-
-  productForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
-    stock: new FormControl('', [Validators.required]),
-    detail: new FormControl('', [Validators.required]),
-    promotion: new FormControl(''),
-    file: new FormControl('', [Validators.required]),
-  });
+  products: any;
 
   previewLoaded: boolean = false;
 
-  constructor(private ps: BookService) { }
+  constructor(private ps: BookService) { 
+    this.onLoading();
+  }
 
   ngOnInit(): void {
   }
 
-  DeleteProduct() {
-    this.ps.deleteProduct(this.productForm.value).subscribe(
-      data => {
-        console.log(data)
-        alert('Product updated successfully');
-        this.productForm.reset();
-      },
-      err => {
-        console.log(err);
-      }
-    );
+  deleteUser(item:any){
+    console.log("กด delete",item);
+    
+    try {
+      this.ps.deleteProduct(item).subscribe(
+        data => {
+          //this.products = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    this.onLoading();
+  }
+
+  onLoading(){
+    try {
+      this.ps.getProducts().subscribe(
+        data => {
+          this.products = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
 
