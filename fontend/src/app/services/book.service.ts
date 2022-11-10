@@ -59,20 +59,20 @@ export class BookService {
   updateBook(product: any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/bookstore/updateData', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
-  updateBookByName(product: any){
-    let token = this.local.get('user').token
-    let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
-    .pipe(map(data =>{
-      return data;
-    }))
-  }
+  // updateBookByName(product: any){
+  //   let token = this.local.get('user').token
+  //   let head_object = new HttpHeaders().set("authorization",token)
+  //   return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
+  //   .pipe(map(data =>{
+  //     return data;
+  //   }))
+  // }
  
 
   getSomePs(p_id:any){
