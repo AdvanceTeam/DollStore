@@ -11,15 +11,18 @@ import { FormControl } from '@angular/forms';
 export class SearchComponent implements OnInit{
     
   search: any;
+  status!: boolean;
   // keyword = new FormControl('');
   help!: number;
   @Output() messageEvent = new EventEmitter<any>();
   
   constructor(private ps: DollService) { 
     this.onLoading();
+    
   }
 
   ngOnInit(): void {
+  this.status = false;
 }
   
   onLoading(){
@@ -60,6 +63,9 @@ export class SearchComponent implements OnInit{
   //     this.onSearch2(this.keyword.value);
   //   }
   // }
+  ngClassMethod(){
+    this.status = !this.status;
+  }
 
   toProduct(item:any){
     this.messageEvent.emit(this.search)
