@@ -18,7 +18,7 @@ export class AddproductComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required]),
-    detail: new FormControl('', [Validators.required]),
+    detail: new FormControl(''),
     promotion: new FormControl(''),
     file: new FormControl('', [Validators.required]),
   });
@@ -29,14 +29,12 @@ export class AddproductComponent implements OnInit {
     this.loadpromotion()
   }
 
-  @Input() parentData!: string;
   @Output() messageEvent = new EventEmitter<string>();
+
+  //========== theme mode ==========
   themeColor!: string;
-
-  
-
   lightColor: String="rgb(220, 252, 230)";
-  darkColor : String="rgb(75, 62, 62);";
+  darkColor : String="rgb(63,71,66)";
 
   fontColor!: String;
   bgColor!: String;
@@ -45,18 +43,19 @@ export class AddproductComponent implements OnInit {
     if(theme =='light'){
       this.fontColor = this.darkColor;
       this.bgColor = this.lightColor;
-      console.log("light!!!")
+      // console.log(this.fontColor)
     }
     else if(theme =='dark'){
       this.fontColor = this.lightColor;
       this.bgColor = this.darkColor;
-      console.log("Dark----")
+      // console.log(this.fontColor)
     }
+    
   }
 
 
   ngOnInit(): void {
-    this.themeColor = 'light';
+    //this.themeColor = 'light';
     this.fontColor = this.darkColor;
     this.bgColor = this.lightColor;
   }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter ,ViewChild } from '@angu
 import { BookService } from 'src/app/services/book.service';
 
 import { AddproductComponent } from '../addproduct/addproduct.component';
+import { EditproductComponent } from '../editproduct/editproduct.component';
 
 @Component({
   selector: 'app-manageproduct',
@@ -16,6 +17,9 @@ export class ManageproductComponent implements OnInit {
 
   @ViewChild(AddproductComponent)
   addproductComponent!: AddproductComponent;
+
+  @ViewChild(EditproductComponent)
+  editproductComponent!: EditproductComponent;
 
   themeColor: string = 'rgb(255,255,255)';
   fontColor: string = 'rgb(0,0,0)';
@@ -45,7 +49,8 @@ export class ManageproductComponent implements OnInit {
     }
     this.addproductComponent.themeColor = this.theme;
     this.addproductComponent.changeTheme(this.theme);
-    console.log("Now addProduct is "+this.addproductComponent.themeColor);
+    
+    this.editproductComponent.changeTheme(this.theme);
 
     this.ngStyleMethod();
   }
