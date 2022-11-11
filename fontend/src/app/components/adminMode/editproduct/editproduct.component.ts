@@ -21,6 +21,7 @@ export class EditproductComponent implements OnInit {
     detail: new FormControl('', [Validators.required]),
     promotion: new FormControl(''),
     file: new FormControl('', [Validators.required]),
+    img: new FormControl('', [Validators.required]),
   });
 
   products: any

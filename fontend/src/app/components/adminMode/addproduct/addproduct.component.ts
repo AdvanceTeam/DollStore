@@ -29,27 +29,30 @@ export class AddproductComponent implements OnInit {
   constructor(private ps: BookService, private promotionservice: PromotionService) {
     this.loadpromotion()
   }
-
-  @Output() messageEvent = new EventEmitter<string>();
+  
 
   //========== theme mode ==========
+  @Input()
   themeColor!: string;
+
+
   lightColor: String="rgb(220, 252, 230)";
   darkColor : String="rgb(63,71,66)";
 
   fontColor!: String;
   bgColor!: String;
+  
 
-  changeTheme(theme: string){
-    if(theme =='light'){
+  changeTheme(){
+    if(this.themeColor =='dark'){
       this.fontColor = this.darkColor;
       this.bgColor = this.lightColor;
-      // console.log(this.fontColor)
+      console.log(this.themeColor)
     }
-    else if(theme =='dark'){
+    else if(this.themeColor =='light'){
       this.fontColor = this.lightColor;
       this.bgColor = this.darkColor;
-      // console.log(this.fontColor)
+      console.log(this.themeColor)
     }
     
   }

@@ -202,7 +202,7 @@ router.route('/updateData').put(authorization, (req, res) => {
 
     var query = { "_id": req.body._id };
 
-    Book.findByIdAndUpdate(query, { "price": req.body.price,"stock" : req.body.stock,"detail": req.body.stock,"promotion": req.body.promotion,"file": req.body.file}, { new: true }, function (err, doc) {
+    Book.findByIdAndUpdate(query, { "price": req.body.price,"stock" : req.body.stock,"detail": req.body.stock,"promotion": req.body.promotion,"file": req.body.file, "img": req.body.img}, { new: true }, function (err, doc) {
         if (err) return res.send(500, { error: err });
         return res.send('Succesfully saved.');
     });

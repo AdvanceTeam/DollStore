@@ -21,7 +21,7 @@ export class ManageproductComponent implements OnInit {
   @ViewChild(EditproductComponent)
   editproductComponent!: EditproductComponent;
 
-  themeColor: string = 'rgb(255,255,255)';
+  bgColor: string = 'rgb(255,255,255)';
   fontColor: string = 'rgb(0,0,0)';
   theme: string ='light';
 
@@ -31,7 +31,7 @@ export class ManageproductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeColor = 'rgb(255,255,255)';
+    this.bgColor = 'rgb(255,255,255)';
     this.fontColor = 'rgb(0,0,0)';
     this.theme ='light';
 
@@ -40,24 +40,20 @@ export class ManageproductComponent implements OnInit {
   toggleTheme(){
     if(this.theme == 'dark'){
       this.theme = 'light';
-      this.themeColor = 'rgb(255,255,255)';
+      this.bgColor = 'rgb(255,255,255)';
       this.fontColor = 'rgb(0,0,0)';
     }else{
       this.theme = 'dark';
-      this.themeColor = 'rgb(0,0,0)'
+      this.bgColor = 'rgb(0,0,0)'
       this.fontColor = 'rgb(255,255,255)';
     }
-    this.addproductComponent.themeColor = this.theme;
-    this.addproductComponent.changeTheme(this.theme);
+    // this.addproductComponent.bgColor = this.theme;
+    this.addproductComponent.changeTheme();
     
     this.editproductComponent.changeTheme(this.theme);
-
-    this.ngStyleMethod();
+    this.messageEvent.emit(this.theme);
   }
 
-  ngStyleMethod(){
-    this.messageEvent.emit(this.themeColor)
-  }
 
   onLoading(){
     try{
