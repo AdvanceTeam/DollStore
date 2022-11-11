@@ -104,6 +104,22 @@ export class ManagepromotionComponent implements OnInit {
     this._location.back();
   }
 
+  deleteproduct(item:any){
+    console.log("กด delete",item);
+    try {
+      this.promotionservice.deletepromotion(item).subscribe(
+        data => {
+          this.promotions = data;
+          this.load()
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
 
