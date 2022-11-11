@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { Router } from '@angular/router';
+
+import { ManageproductComponent } from '../../adminMode/manageproduct/manageproduct.component';
+
+
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -19,5 +24,7 @@ export class AdminComponent implements OnInit {
     const loggedIn = localStorage.getItem('STATE');
     this.router.navigate(['login']);
   }
+
+
 
 }

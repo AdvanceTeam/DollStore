@@ -12,17 +12,23 @@
 </style>
 
 <div class="row">
-    <div class="col-md-12" style="background-color:rgb(220, 252, 230); margin: 10px; border-radius: 25px;">
+    <div class="col-md-12" style=" margin: 10px; border-radius: 25px;" [ngStyle]="{'background-color': bgColor}">
         <div class="card-title">
             <form [formGroup]="productForm">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" [ngStyle]="{'color': fontColor}">
                             <div class="form-group">
-                                <h2>Add Product</h2>
+                                <h2  >Add Product</h2>
                                 <div class="input-container">
                                     <label for="">Product Name :</label>
                                     <input type="text" class="form-control" formControlName="name">
+                                    <!-- <div *ngIf="name?.errors && (name?.dirty || name?.touched)"
+                                                class="alert alert-danger">
+                                                <div *ngIf="name?.errors?.['required']">
+                                                    name is required
+                                                </div>
+                                            </div> -->
 
                                 </div>
                             </div>
@@ -30,12 +36,30 @@
                                 <div class="input-container">
                                     <label for="">Price : </label>
                                     <input type="text" class="form-control" formControlName="price">
+                                    <!-- <div *ngIf="price?.errors && (price?.dirty || price?.touched)"
+                                                class="alert alert-danger">
+                                                <div *ngIf="price?.errors?.['required']">
+                                                    price is required
+                                                </div>
+                                                <div *ngIf="price?.errors?.['min']">
+                                                    price must be upper than 1
+                                                </div>
+                                            </div> -->
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Stock : </label>
                                     <input type="text" class="form-control" formControlName="stock">
+                                    <!-- <div *ngIf="stock?.errors && (stock?.dirty || stock?.touched)"
+                                                class="alert alert-danger">
+                                                <div *ngIf="stock?.errors?.['required']">
+                                                    stock is required
+                                                </div>
+                                                <div *ngIf="stock?.errors?.['min']">
+                                                    stock must be upper than 1
+                                                </div>
+                                            </div> -->
                                 </div>
                             </div>
                             <div class="row">
@@ -56,7 +80,8 @@
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Detail :</label>
-                                    <textarea class="form-control" rows="5" id="detail" formControlName="detail"></textarea><br />
+                                    <textarea class="form-control" rows="5" id="detail" formControlName="detail"></textarea>
+                                    <br />
                                     <!-- <textarea [(ngModel)]="comment" class="form-control" rows="5" id="comment"></textarea><br/> -->
                                 </div>
                             </div>
@@ -67,6 +92,12 @@
                                 <div class="form-group">
                                     <!-- <input type="file" class="form-control-file" formControlName="file"> -->
                                     <input type="file" class="form-control-file" formControlName='file' (change)="onChangeImg($event)">
+                                    <!-- <div *ngIf="file?.errors && (file?.dirty || file?.touched)"
+                                                class="alert alert-danger">
+                                                <div *ngIf="file?.errors?.['required']">
+                                                    Image is required
+                                                </div>
+                                            </div> -->
                                 </div>
                             </div>
                             

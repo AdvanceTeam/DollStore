@@ -11,8 +11,8 @@ import { PromotionService } from 'src/app/services/promotion.service';
 })
 export class EditproductComponent implements OnInit {
 
-  productPromotion: string[] = ['Sale Sale','SaSa LeLe','Sale99'];
-  productName: string[] = ['Pikachu','Charmender','Eevee'];
+  productPromotion: string[] = ['Sale Sale', 'SaSa LeLe', 'Sale99'];
+  productName: string[] = ['Pikachu', 'Charmender', 'Eevee'];
 
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -23,18 +23,43 @@ export class EditproductComponent implements OnInit {
     file: new FormControl('', [Validators.required]),
   });
 
-  products : any
+  products: any
   @Input() itemid: any;
 
   previewLoaded: boolean = false;
   promotions: any;
 
-  constructor(private ps: BookService,private promotionservice: PromotionService,private BookService: BookService) {
+  //=========== theme mode =========
+  themeColor!: string;
+  lightColor: String = "rgb(220, 252, 230)";
+  darkColor: String = "rgb(63,71,66)";
+
+  fontColor!: String;
+  bgColor!: String;
+
+  constructor(private ps: BookService, private promotionservice: PromotionService, private BookService: BookService) {
     this.loadpromotion()
     this.onLoadingProduct()
-   }
+  }
 
   ngOnInit(): void {
+    this.themeColor = 'light';
+    this.fontColor = this.darkColor;
+    this.bgColor = this.lightColor;
+  }
+
+  changeTheme(theme: string) {
+    if (theme == 'light') {
+      this.fontColor = this.darkColor;
+      this.bgColor = this.lightColor;
+      console.log("Edit is light!")
+    }
+    else if (theme == 'dark') {
+      this.fontColor = this.lightColor;
+      this.bgColor = this.darkColor;
+      console.log("Edit is dark!")
+    }
+    this.themeColor = theme;
   }
 
   UpdateProduct() {
@@ -69,33 +94,33 @@ export class EditproductComponent implements OnInit {
       }
     }
   }
-  loadpromotion(){
-    try{
+  loadpromotion() {
+    try {
       this.promotionservice.getPromotion().subscribe({
-        next:data => {
+        next: data => {
           this.promotions = data;
           console.log(data)
         },
-        error:err => {
+        error: err => {
           console.log(err);
         }
       })
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
 
-  onLoadingProduct(){
-    try{
+  onLoadingProduct() {
+    try {
       this.BookService.getProducts().subscribe(
-        data =>{
+        data => {
           this.products = data;
           console.log(data)
         },
-        err =>{
+        err => {
           console.log(err)
         });
-    }catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
