@@ -113,10 +113,19 @@
                                         <td>{{item.percent}}</td>
                                         <td>{{item.datestart | date:'dd-MM-yyyy'}}</td>
                                         <td>{{item.datestop | date:'dd-MM-yyyy'}}</td>
+                                        <div class="col" style="margin-top: 5px;">
+                                            <a class="btn btn-danger" role="button" style="width: 200px;"
+                                                (click)="deleteproduct(item._id)">
+                                                <i>
+                                                    Delete
+                                                </i>
+                                            </a>
+                                        </div>
 
                                     </tr>
                                 </tbody>
                             </table>
+                            
                         </div>
                     </form>
                 </div>

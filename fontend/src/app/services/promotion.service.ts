@@ -35,6 +35,15 @@ export class PromotionService {
       }))
   }
 
+  deletepromotion(promotion : any){
+    let token = this.local.get('user').token
+    let head_object = new HttpHeaders().set("authorization",token)
+    return this.http.delete<any>('http://localhost:3000/dollstore/deletepromotion/'+promotion,{headers:head_object})
+    .pipe(map(data =>{
+      return data;
+    }))
+  }
+
 }
 
 

@@ -86,7 +86,7 @@ export class CartService {
     console.log("item จากการรีเซ็ตตะกร้า", item);
     
     try {
-      this.DollService.updateDoll(item).subscribe(
+      this.DollService.updateDoll("",item).subscribe(
         data => {
           //this.products = data;
         },
