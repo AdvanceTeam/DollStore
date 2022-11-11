@@ -60,7 +60,7 @@ const insertUser = (dataUser) => {
         var new_user = new User({
             username: dataUser.username,
             password: dataUser.password,
-            role: dataUser.role
+            role: "customer"
             // address: dataUser.address
         });
         new_user.save((err, data)=>{
