@@ -56,10 +56,10 @@ export class DollService {
     }))
   }
 
-  updateDoll(product: any){
+  updateDoll(product: any,item : any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/dollstore/updateData', product,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/dollstore/updateData/'+product,item,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
