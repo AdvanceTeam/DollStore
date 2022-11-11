@@ -1,0 +1,44 @@
+[{
+  "_id": {
+    "$oid": "636b5dda19801bfe1c523559"
+  },
+  "name": "super sale",
+  "percent": 99,
+  "timestart": "2022-11-09T17:00:00.000Z",
+  "timestop": "2022-11-16T17:00:00.000Z",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636c94167fd496301b7e97bc"
+  },
+  "name": "Sale99",
+  "percent": 99,
+  "timestart": "2022-11-10T17:00:00.000Z",
+  "timestop": "2022-11-17T17:00:00.000Z",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636c9e9e22deb444f85141e0"
+  },
+  "name": "llll",
+  "percent": 77,
+  "timestart": "2022-11-08T17:00:00.000Z",
+  "timestop": "2022-11-10T17:00:00.000Z",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636cbe6d19ae2bec8696c106"
+  },
+  "name": "Sasa lele 99",
+  "percent": 99,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636e5ade7f7b6bc0cead5fa1"
+  },
+  "name": "NewCustomer",
+  "percent": 100,
+  "datestart": "2022-11-11T17:00:00.000Z",
+  "datestop": "2022-11-25T17:00:00.000Z",
+  "__v": 0
+}]
