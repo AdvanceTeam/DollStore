@@ -21,8 +21,9 @@ export class EditproductComponent implements OnInit {
     img: new FormControl('', [Validators.required]),
   });
 
+  productid!: any;
+
   products: any
-  @Input() itemid: any;
   @Output() messageEvent = new EventEmitter<string>();
 
   previewLoaded: boolean = false;
@@ -62,11 +63,14 @@ export class EditproductComponent implements OnInit {
   }
 
   UpdateProduct() {
-    this.ps.updateDoll(this.itemid).subscribe(
+    this.ps.updateDoll(
+      this.productid,
+      this.productForm.value
+      ).subscribe(
       data => {
         console.log(data)
         alert('Product updated successfully');
-        this.productForm.reset();
+        // this.productForm.reset();
         this.messageEvent.emit(data);
       },
       err => {
@@ -125,7 +129,12 @@ export class EditproductComponent implements OnInit {
     }
   }
 
-
+  itemid(id : any){
+    this.productid = id;
+  }
+  get file() {
+    return this.productForm.get('file');
+  }
   resetForm() {
     this.productForm.reset();
     this.previewLoaded = false;

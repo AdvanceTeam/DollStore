@@ -37,6 +37,7 @@
                                           <option value=""></option>
                                           <option *ngFor="let item of products; index as i">
                                             {{item.name}}
+                                            {{itemid(item._id)}}
                                         </option>
                                         </select>
                                       </div>
@@ -72,7 +73,7 @@
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Detail :</label>
-                                    <textarea class="form-control" rows="5" id="detail"></textarea><br />
+                                    <textarea class="form-control" rows="5" id="detail" formControlName='detail'></textarea><br />
                                     <!-- <textarea [(ngModel)]="comment" class="form-control" rows="5" id="comment"></textarea><br/> -->
                                 </div>
                             </div>
@@ -81,8 +82,24 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
-                                  <input type="file" class="form-control-file" formControlName='file'>
-                                  <!-- <input type="file" class="form-control-file" formControlName='file' (change)="onChangeImg($event)"> -->
+                                    <!-- <input type="file" class="form-control-file" formControlName="file"> -->
+                                    <input type="file" class="form-control-file" formControlName='file'
+                                        (change)="onChangeImg($event)">
+                                    <div *ngIf="file?.errors && (file?.dirty || file?.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="file?.errors?.['required']">
+                                            Please drop the image
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 20px;">
+                                        <div class="col-md-3">
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <img *ngIf="previewLoaded" class="img-thumbnail"
+                                                [src]="this.productForm.value.img" style="height:150px;">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
