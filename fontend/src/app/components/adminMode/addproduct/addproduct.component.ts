@@ -20,7 +20,8 @@ export class AddproductComponent implements OnInit {
     stock: new FormControl('', [Validators.required]),
     detail: new FormControl(''),
     promotion: new FormControl(''),
-    file: new FormControl('', [Validators.required]),
+    file: new FormControl(''),
+    img: new FormControl('',[Validators.required]),
   });
 
   previewLoaded: boolean = false;
@@ -58,10 +59,6 @@ export class AddproductComponent implements OnInit {
     //this.themeColor = 'light';
     this.fontColor = this.darkColor;
     this.bgColor = this.lightColor;
-  }
-
-  onClick2Parent(){
-    this.messageEvent.emit(this.themeColor);
   }
 
 
