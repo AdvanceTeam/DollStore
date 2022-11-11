@@ -1,5 +1,5 @@
 <div class="container-fluid" style="margin-top:30px">
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-7">
       <form class="form-inline">
         <div class="form-group">
@@ -13,13 +13,14 @@
           </div>
         </div>
       </form>
-    </div>
-    <div class="col-md-5">
-      <div style="display: inline-block;">
+    </div> -->
+
+    <div class="col-md-12">
+      <div style="display: inline-block; margin-right: 30px;">
         <input type="number" [(ngModel)]="help" class="form-control" placeholder="ป้อนตัวเลขเพื่อถอดรหัส">
       </div>
 
-      <div style="display: inline-block; margin-right: 10px;">
+      <div style="display: inline-block">
         <div class="row text-center">
           <div [ngSwitch]="help">
             <div *ngSwitchCase="3496">
@@ -41,4 +42,3 @@
       </div>
     </div>
   </div>
-</div>

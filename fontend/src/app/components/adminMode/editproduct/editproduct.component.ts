@@ -12,7 +12,6 @@ import { PromotionService } from 'src/app/services/promotion.service';
 export class EditproductComponent implements OnInit {
 
   productForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required]),
     detail: new FormControl('', [Validators.required]),
@@ -26,6 +25,7 @@ export class EditproductComponent implements OnInit {
   products: any
   @Output() messageEvent = new EventEmitter<string>();
 
+  selectedname!:any
   previewLoaded: boolean = false;
   promotions: any;
 
@@ -72,12 +72,12 @@ export class EditproductComponent implements OnInit {
         console.log(data)
         alert('Product updated successfully');
         // this.productForm.reset();
-        this.messageEvent.emit(data);
       },
       err => {
         console.log(err);
       }
     );
+    this.messageEvent.emit("ส่งแล้ว");
   }
   
 
@@ -120,6 +120,7 @@ export class EditproductComponent implements OnInit {
     try {
       this.DollService.getProducts().subscribe(
         data => {
+
           this.products = data;
           console.log(data)
         },
@@ -131,8 +132,9 @@ export class EditproductComponent implements OnInit {
     }
   }
 
-  itemid(id : any){
-    this.productid = id;
+  Onclickitemid(event : any){
+    console.log(event.target.value)
+    this.productid = this.products[Number(event.target.value)]._id;
   }
   get file() {
     return this.productForm.get('file');

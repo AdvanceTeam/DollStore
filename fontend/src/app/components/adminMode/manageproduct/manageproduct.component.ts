@@ -60,6 +60,7 @@ export class ManageproductComponent implements OnInit {
 
   update(){
     this.onLoading();
+    this.editproductComponent.onLoadingProduct();
   }
 
 

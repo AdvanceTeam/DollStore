@@ -33,19 +33,11 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <!-- <select class="form-control" [ngModel]="productid">
-                                            <option value=""></option>
-                                            <option *ngFor="let item of products; index as i">
-                                                {{item._id}}
-                                            </option>
-                                        </select> -->
-
-                                        <select class="form-control" formControlName="name" >
-                                            <option value=""></option>
-                                            <option *ngFor="let item of products; index as i">
-                                                {{item.name}}
-                                                <!-- {{itemid(item._id)}} -->
-                                            </option>
+                                        <select class="form-control" (change)="Onclickitemid($event)">
+                                          <option value=""></option>
+                                          <option *ngFor="let item of products; index as i" [value]="i">
+                                            {{item.name}}
+                                        </option>
                                         </select>
 
                                     </div>
