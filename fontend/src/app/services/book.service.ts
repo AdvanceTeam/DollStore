@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-<<<<<<< HEAD
-import { LocalStorageService } from 'angular-web-storage';
-=======
->>>>>>> 139ac57bfe294a4a29f7484e53bd2c6745e1af6a
 import { map } from 'rxjs/operators'
 import {cartsType} from '../cart.model';
 import { LocalStorageService } from 'angular-web-storage';
@@ -19,11 +15,7 @@ export class BookService {
   sumPrice: number = 0;
   cart: cartsType = []
 
-<<<<<<< HEAD
-  constructor(private http:HttpClient, public local:LocalStorageService,) { }
-=======
   constructor(private http: HttpClient, public local:LocalStorageService,) { }
->>>>>>> 139ac57bfe294a4a29f7484e53bd2c6745e1af6a
 
   add(p_id: number){
     this.counter += 1;

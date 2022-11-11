@@ -5,11 +5,6 @@ var expressApp = expressFunction();
 const router = expressFunction.Router();
 var Schema = require('mongoose').Schema;
 const authorization = require('../config/authorize')
-<<<<<<< HEAD
-
-=======
->>>>>>> 139ac57bfe294a4a29f7484e53bd2c6745e1af6a
-
 
 const bookSchema = Schema({
     name: String,
