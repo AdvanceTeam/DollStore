@@ -14,7 +14,7 @@ export class OrderService {
   getOrders(){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.get<any>('http://localhost:3000/bookstore/getorder',{headers:head_object})
+    return this.http.get<any>('http://localhost:3000/dollstore/getorder',{headers:head_object})
     .pipe(map(data => {
       if (data) {
         this.products = data;
@@ -27,7 +27,7 @@ export class OrderService {
   deleteProduct(product : any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.post<any>('http://localhost:3000/bookstore/deleteorder', product,{headers:head_object})
+    return this.http.post<any>('http://localhost:3000/dollstore/deleteorder', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -38,7 +38,7 @@ export class OrderService {
     let head_object = new HttpHeaders().set("authorization",token)
     console.log('addOrder');
     console.log(product);
-    return this.http.post<any>('http://localhost:3000/bookstore/addorder', product,{headers:head_object})
+    return this.http.post<any>('http://localhost:3000/dollstore/addorder', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -47,7 +47,7 @@ export class OrderService {
   updateStateSend(item:any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/updateStateOrder', item,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/dollstore/updateStateOrder', item,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))

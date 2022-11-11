@@ -3,7 +3,7 @@ import { cartsType } from '../cart.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from 'angular-web-storage';
 import { map } from 'rxjs/operators'
-import { BookService } from 'src/app/services/book.service';
+import { DollService } from 'src/app/services/doll.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,7 @@ export class CartService {
   price: number = 0;
 
   stop = false;
-  constructor(private http:HttpClient, private BookService:BookService, public local:LocalStorageService,) { }
+  constructor(private http:HttpClient, private DollService:DollService, public local:LocalStorageService,) { }
 
   getFromBuy(item:any){
     this.carts.push(item) // เพิ่ม หนังสือเข้าไปเก็บ เป็น [{หนังสือ1},{หนังสือ2},{หนังสือ3}]
@@ -46,7 +46,7 @@ export class CartService {
     let head_object = new HttpHeaders().set("authorization",token)
     console.log('addOrder');
     console.log(product);
-    return this.http.post<any>('http://localhost:3000/bookstore/addorder', product,{headers:head_object})
+    return this.http.post<any>('http://localhost:3000/dollstore/addorder', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -86,7 +86,7 @@ export class CartService {
     console.log("item จากการรีเซ็ตตะกร้า", item);
     
     try {
-      this.BookService.updateBook(item).subscribe(
+      this.DollService.updateDoll(item).subscribe(
         data => {
           //this.products = data;
         },

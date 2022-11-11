@@ -39,11 +39,11 @@ expressApp.use((req, res, next)=>{
     });
 });
 
-expressApp.use('/bookstore', require('./routes/sigup'))
-expressApp.use('/bookstore', require('./routes/signin'))
-expressApp.use('/bookstore', require('./routes/bool'))
-expressApp.use('/bookstore', require('./routes/order'))
-expressApp.use('/bookstore', require('./routes/cart'))
+expressApp.use('/dollstore', require('./routes/sigup'))
+expressApp.use('/dollstore', require('./routes/signin'))
+expressApp.use('/dollstore', require('./routes/dollst'))
+expressApp.use('/dollstore', require('./routes/order'))
+expressApp.use('/dollstore', require('./routes/cart'))
 
 expressApp.use('/dollstore', require('./routes/promotion'))
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { BookService } from '../../../services/book.service'
+import { DollService } from '../../../services/doll.service'
 
 @Component({
   selector: 'app-deleteproduct',
@@ -14,7 +14,7 @@ export class DeleteproductComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
-  constructor(private ps: BookService) { 
+  constructor(private ps: DollService) { 
     this.onLoading();
   }
 

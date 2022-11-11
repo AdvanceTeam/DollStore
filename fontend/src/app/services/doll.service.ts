@@ -7,7 +7,7 @@ import { LocalStorageService } from 'angular-web-storage';
 @Injectable({
   providedIn: 'root'
 })
-export class BookService {
+export class DollService {
   products: any;
   search: any;
   fromproduct: any;
@@ -28,7 +28,7 @@ export class BookService {
   addProduct(product : any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.post<any>('http://localhost:3000/bookstore/addbook', product,{headers:head_object})
+    return this.http.post<any>('http://localhost:3000/dollstore/adddoll', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -37,7 +37,7 @@ export class BookService {
   getProducts(){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.get<any>('http://localhost:3000/bookstore/getAllBook',{headers:head_object})
+    return this.http.get<any>('http://localhost:3000/dollstore/getAllDoll',{headers:head_object})
     .pipe(map(data => {
       if (data) {
         this.products = data;
@@ -50,25 +50,25 @@ export class BookService {
   deleteProduct(product : any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.delete<any>('http://localhost:3000/bookstore/deletebook/'+product,{headers:head_object})
+    return this.http.delete<any>('http://localhost:3000/dollstore/deletedoll/'+product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
-  updateBook(product: any){
+  updateDoll(product: any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/updateData', product,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/dollstore/updateData', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
   }
 
-  // updateBookByName(product: any){
+  // updateDollByName(product: any){
   //   let token = this.local.get('user').token
   //   let head_object = new HttpHeaders().set("authorization",token)
-  //   return this.http.put<any>('http://localhost:3000/bookstore/updateQuantityBook', product,{headers:head_object})
+  //   return this.http.put<any>('http://localhost:3000/dollstore/updateQuantityDoll', product,{headers:head_object})
   //   .pipe(map(data =>{
   //     return data;
   //   }))
@@ -82,7 +82,7 @@ export class BookService {
   getBySearch(keyword:any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.get<any>('http://localhost:3000/bookstore/search/'+keyword,{headers:head_object})
+    return this.http.get<any>('http://localhost:3000/dollstore/search/'+keyword,{headers:head_object})
     .pipe(map(data => {
       if (data) {
         this.search = data;
@@ -96,14 +96,14 @@ export class BookService {
     this.fromproduct = item;
   }
 
-  sendToBooks(){
+  sendToDolls(){
     return this.fromproduct;
   }
 
-  getBookByID(id:String){
+  getDollByID(id:String){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.get<any>('http://localhost:3000/bookstore/getBookByID/'+id,{headers:head_object})
+    return this.http.get<any>('http://localhost:3000/dollstore/getDollByID/'+id,{headers:head_object})
     .pipe(map(data => {
       return data;
     }))

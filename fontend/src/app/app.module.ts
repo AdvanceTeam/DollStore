@@ -18,7 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTabsModule} from '@angular/material/tabs';
-import { PipeBookModule } from 'src/shared/pipe/pipe-book/pipe-book.module';
+import { PipeDollModule } from 'src/shared/pipe/pipe-doll/pipe-doll.module';
 import { ManageproductComponent } from './components/adminMode/manageproduct/manageproduct.component';
 import { ManagepromotionComponent } from './components/adminMode/managepromotion/managepromotion.component';
 import { ShowproductsComponent } from './components/userMode/showproducts/showproducts.component';
@@ -71,7 +71,7 @@ import { SearchComponent } from './components/userMode/search/search.component';
     MatButtonModule,
     MatBadgeModule,
     MatTabsModule,
-    PipeBookModule,
+    PipeDollModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,

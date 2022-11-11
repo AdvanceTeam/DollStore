@@ -64,7 +64,7 @@ export class AuthServiceService {
 
        // คือ login ไปที่ backend
        getData(authData: any){
-        return  this.http.post<any>('http://localhost:3000/bookstore/signin',authData)
+        return  this.http.post<any>('http://localhost:3000/dollstore/signin',authData)
         .pipe(map(data =>{
           if(data){
             this.local.set('user', data, 1, 'h');
@@ -83,7 +83,7 @@ export class AuthServiceService {
 
       
       signUp(authData: any){
-        return this.http.post<any>('http://localhost:3000/bookstore/signup',authData)
+        return this.http.post<any>('http://localhost:3000/dollstore/signup',authData)
         .pipe(map(data =>{
           if(data){
            
@@ -93,7 +93,7 @@ export class AuthServiceService {
       }
 
       updatePassword(product: any){
-        return this.http.put<any>('http://localhost:3000/bookstore/resetPassword', product)
+        return this.http.put<any>('http://localhost:3000/dollstore/resetPassword', product)
         .pipe(map(data =>{
           return data;
         }))
@@ -101,7 +101,7 @@ export class AuthServiceService {
 
 
       getUsersData(){
-        return this.http.get<any>('http://localhost:3000/bookstore/getUser')
+        return this.http.get<any>('http://localhost:3000/dollstore/getUser')
         .pipe(map(data => {
           if (data) {
             this.products = data;
@@ -112,7 +112,7 @@ export class AuthServiceService {
       }
 
       deleteProduct(product : any){
-        return this.http.delete<any>('http://localhost:3000/bookstore/deleteUser/'+product)
+        return this.http.delete<any>('http://localhost:3000/dollstore/deleteUser/'+product)
         .pipe(map(data =>{
           return data;
         }))

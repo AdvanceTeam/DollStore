@@ -1,5 +1,5 @@
 import { Component, OnInit,EventEmitter,Output } from '@angular/core';
-import { BookService } from 'src/app/services/book.service';
+import { DollService } from 'src/app/services/doll.service';
 import { FormControl } from '@angular/forms';
 
 
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit{
   help!: number;
   @Output() messageEvent = new EventEmitter<any>();
   
-  constructor(private ps: BookService) { 
+  constructor(private ps: DollService) { 
     this.onLoading();
   }
 

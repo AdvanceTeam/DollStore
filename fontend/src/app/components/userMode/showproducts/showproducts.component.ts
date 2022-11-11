@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from 'src/app/services/book.service';
+import { DollService } from 'src/app/services/doll.service';
 import { LocalStorageService } from 'angular-web-storage';
 import { Router } from '@angular/router';
 import { CartV2Service } from 'src/app/services/cart-v2.service';
@@ -17,30 +17,30 @@ export class ShowproductsComponent implements OnInit {
   myGroup = new FormGroup({
     location : new FormControl('',[Validators.required])
   });
-  sumBook = 0;
+  sumDoll = 0;
   listCart!: [{
     item:String,
     quantity:number
   }];
   
-  listBook: {id:String,name:String,price:Number}[] = [];
+  listDoll: {id:String,name:String,price:Number}[] = [];
 
   order : {
     userID:String,
     totalPayment:number,
     address: String,
     list:{
-      idBook:String,
-      nameBook:String
+      idDoll:String,
+      nameDoll:String
       quantity:number,
-      costBook:number
+      costDoll:number
       }[]
   } = { userID:'',totalPayment:0,address:'',
     list:[]
   }
 
   constructor(
-    private BookService: BookService, 
+    private DollService: DollService, 
     public local:LocalStorageService,
     private router: Router,
     private CartV2Service:CartV2Service,
@@ -57,7 +57,7 @@ export class ShowproductsComponent implements OnInit {
 
   onLoading(){
     try{
-      this.BookService.getProducts().subscribe(
+      this.DollService.getProducts().subscribe(
         data =>{
           this.products = data;
         },
@@ -73,13 +73,13 @@ export class ShowproductsComponent implements OnInit {
     this.products = $event;
   }
 
-  getBookById(element:{item:String,quantity:number}){
-    this.BookService.getBookByID(element.item).subscribe({
+  getDollById(element:{item:String,quantity:number}){
+    this.DollService.getDollByID(element.item).subscribe({
         next:data =>{
-          // console.log("get book by id");
+          // console.log("get doll by id");
           // console.log(data);
           
-          // this.listBook.push({
+          // this.listDoll.push({
           //   id:data._id,
           //   name:data.name,
           //   price:data.price
@@ -89,12 +89,12 @@ export class ShowproductsComponent implements OnInit {
           // console.log("num ="+num);
           
           this.order.totalPayment = this.order.totalPayment + (data.price * element.quantity);
-          this.sumBook = this.sumBook + element.quantity;
+          this.sumDoll = this.sumDoll + element.quantity;
           this.order.list.push({
-            idBook:data._id,
-            nameBook:data.name,
+            idDoll:data._id,
+            nameDoll:data.name,
             quantity:element.quantity,
-            costBook:data.price
+            costDoll:data.price
           })
         },
         error: err =>{
@@ -112,15 +112,15 @@ export class ShowproductsComponent implements OnInit {
           //console.log(data.product);
           this.listCart = data.product;
           for (let index = 0; index < this.listCart.length; index++) {
-            this.getBookById(this.listCart[index]);
+            this.getDollById(this.listCart[index]);
           }
-          // console.log("list book");
-          // console.log(this.listBook);
-          //now line listcart and listbook alerdy use
-          console.log("order before sumBook = ");
+          // console.log("list doll");
+          // console.log(this.listDoll);
+          //now line listcart and listdoll alerdy use
+          console.log("order before sumDoll = ");
           console.log(this.order);
           
-          console.log(this.sumBook);
+          console.log(this.sumDoll);
           
         },
         err => {
@@ -141,20 +141,20 @@ export class ShowproductsComponent implements OnInit {
   }
 
 
-  async checkaddTocart(idBook:String){
+  async checkaddTocart(idDoll:String){
     // console.log("token user:")
     // console.log(this.local.get('user').result.id);
     const token = this.local.get('user').result.id;
-    console.log(idBook);
+    console.log(idDoll);
     console.log("checkaddTocart working");
     
     try {
-      this.CartV2Service.updateCart({idUser:token ,item:idBook}).subscribe(
+      this.CartV2Service.updateCart({idUser:token ,item:idDoll}).subscribe(
         data => {
 
           //console.log(data);
           this.order = { userID:'',totalPayment:0,address:'', list:[] };
-          this.sumBook = 0;
+          this.sumDoll = 0;
           this.getCartById();
           
         },

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { BookService } from '../../../services/book.service'
+import { DollService } from '../../../services/doll.service'
 import { PromotionService } from 'src/app/services/promotion.service';
 import { ManageproductComponent } from '../manageproduct/manageproduct.component';
 
@@ -26,7 +26,7 @@ export class AddproductComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
-  constructor(private ps: BookService, private promotionservice: PromotionService) {
+  constructor(private ps: DollService, private promotionservice: PromotionService) {
     this.loadpromotion()
   }
   
@@ -34,7 +34,8 @@ export class AddproductComponent implements OnInit {
   //========== theme mode ==========
   @Input()
   themeColor!: string;
-
+  @Output()
+  messageEvent = new EventEmitter<string>();
 
   lightColor: String="rgb(220, 252, 230)";
   darkColor : String="rgb(63,71,66)";
@@ -72,6 +73,7 @@ export class AddproductComponent implements OnInit {
         alert('Product added successfully');
         this.resetForm();
         this.load();
+        this.messageEvent.emit(data);
       },
       error:err => {
         console.log(err);
@@ -79,6 +81,7 @@ export class AddproductComponent implements OnInit {
     }
      
     );
+    
   }
 
   load() {

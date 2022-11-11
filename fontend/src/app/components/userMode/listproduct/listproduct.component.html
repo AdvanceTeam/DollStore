@@ -30,12 +30,12 @@
             <tbody>
   
               <tr *ngFor="let item of order.list; index as i">
-                <td scope="row">{{item.nameBook}}</td>
-                <td>{{item.costBook}}</td>
+                <td scope="row">{{item.nameDoll}}</td>
+                <td>{{item.costDoll}}</td>
                 <td>{{item.quantity}}</td>
   
                 <div style="width: 100%;height: 100%">
-                  <button mat-raised-button (click)="minusTocart(item.idBook)">
+                  <button mat-raised-button (click)="minusTocart(item.idDoll)">
                     <mat-icon>delete_outline</mat-icon>
                   </button>
                 </div>

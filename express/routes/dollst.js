@@ -15,7 +15,7 @@ const authorization = require('../config/authorize')
 //     collection: 'promotions'
 // });
 
-const bookSchema = Schema({
+const dollSchema = Schema({
     name: String,
     price: Number,
     stock: Number,
@@ -25,21 +25,21 @@ const bookSchema = Schema({
     img: String,
 
 }, {
-    collection: 'books'
+    collection: 'dolls'
 })
 
-let Book
+let Doll
 try {
-    Book = mongoose.model('books')
+    Doll = mongoose.model('dolls')
 } catch (err) {
-    Book = mongoose.model('books', bookSchema);
+    Doll = mongoose.model('dolls', dollSchema);
 }
 
-exports.Book;
+exports.Doll;
 
 const addProduct = (productData) => {
     return new Promise((resolve, reject) => {
-        var new_product = new Book(
+        var new_product = new Doll(
             productData
         );
         new_product.save(
@@ -57,7 +57,7 @@ const addProduct = (productData) => {
 const getProduct = () => {
     return new Promise(
         (resolve, reject) => {
-            Book.find({}, (err, data) => {
+            Doll.find({}, (err, data) => {
                 if (err) {
                     reject(new Error('Cannot get products!'));
                 } else {
@@ -74,7 +74,7 @@ const getProduct = () => {
 
 const getBySearchProduct = (keyword) => {
     return new Promise((resolve, reject) => {
-        Book.find({ "tag": keyword }, (err, data) => {
+        Doll.find({ "tag": keyword }, (err, data) => {
             if (err) {
                 reject(new Error('Cannot get products'));
             } else {
@@ -103,7 +103,7 @@ router.route('/search/:tag').get(authorization, (req, res) => {
 
 
 
-router.route('/addbook').post(authorization, (req, res) => {
+router.route('/adddoll').post(authorization, (req, res) => {
     console.log('add');
     addProduct(req.body)
         .then(result => {
@@ -116,18 +116,18 @@ router.route('/addbook').post(authorization, (req, res) => {
 })
 
 
-router.route('/updateBookfromuser').put(authorization, (req, res) => {
+router.route('/updateDollfromuser').put(authorization, (req, res) => {
 
     var query = { "name": req.body.name };
 
-    Book.findByIdAndUpdate(query, { "quantity": req.body.quantity }, { new: true }, function (err, doc) {
+    Doll.findByIdAndUpdate(query, { "quantity": req.body.quantity }, { new: true }, function (err, doc) {
         if (err) return res.send(500, { error: err });
         return res.send('Succesfully saved.');
     });
 
 })
 
-router.route('/getAllBook').get(authorization, (req, res) => {
+router.route('/getAllDoll').get(authorization, (req, res) => {
     console.log('get');
     getProduct().then(result => {
         console.log(result);
@@ -138,10 +138,10 @@ router.route('/getAllBook').get(authorization, (req, res) => {
         })
 })
 
-router.route('/getBookByID/:id').get(authorization, async (req, res) => {
+router.route('/getDollByID/:id').get(authorization, async (req, res) => {
     try {
         console.log("get chart By ID working");
-        const result = await Book.findOne({ "_id": req.params.id })
+        const result = await Doll.findOne({ "_id": req.params.id })
         // console.log(result);
         res.status(200).json(result);
     } catch (error) {
@@ -152,7 +152,7 @@ router.route('/getBookByID/:id').get(authorization, async (req, res) => {
 const deleteProduct = (productID) => {
     return new Promise((resolve, reject) => {
 
-        Book.deleteOne({ _id: productID }, (err, data) => {
+        Doll.deleteOne({ _id: productID }, (err, data) => {
 
             if (err) {
                 reject(new Error('Cannot delete products!'));
@@ -168,10 +168,8 @@ const deleteProduct = (productID) => {
     });
 }
 
-
-
-router.route('/deletebook/:id').delete(authorization, (req, res) => {
-    console.log("express delete bool");
+router.route('/deletedoll/:id').delete(authorization, (req, res) => {
+    console.log("express delete dollst");
     //console.log("backend",req.body);
     console.log(req.params.id);
     deleteProduct(req.params.id).then(result => {
@@ -186,13 +184,13 @@ router.route('/deletebook/:id').delete(authorization, (req, res) => {
 
 
 // const updateProduct = (productID) => {
-//     var new_product = new Book;
+//     var new_product = new Doll;
 //     console.log('updateProduct by express working!!!');
 //     //new_product.assign({_id:productID._id},productID,{new: true},
 //     //console.log(productID)
 //     var query = { "_id": productID.body._id };
 
-//     Book.findByIdAndUpdate(query, { "quantity": productID.body.quantity }, { new: true }, function (err, doc) {
+//     Doll.findByIdAndUpdate(query, { "quantity": productID.body.quantity }, { new: true }, function (err, doc) {
 //         if (err) return res.send(500, { error: err });
 //         return res.send('Succesfully saved.');
 //     });
@@ -202,7 +200,7 @@ router.route('/updateData').put(authorization, (req, res) => {
 
     var query = { "_id": req.body._id };
 
-    Book.findByIdAndUpdate(query, { "price": req.body.price,"stock" : req.body.stock,"detail": req.body.stock,"promotion": req.body.promotion,"file": req.body.file, "img": req.body.img}, { new: true }, function (err, doc) {
+    Doll.findByIdAndUpdate(query, { "price": req.body.price,"stock" : req.body.stock,"detail": req.body.stock,"promotion": req.body.promotion,"file": req.body.file, "img": req.body.img}, { new: true }, function (err, doc) {
         if (err) return res.send(500, { error: err });
         return res.send('Succesfully saved.');
     });

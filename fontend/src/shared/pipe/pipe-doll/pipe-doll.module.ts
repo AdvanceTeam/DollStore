@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IdToNameBookPipe } from './id-to-name-book.pipe';
+import { IdToNameDollPipe } from './id-to-name-doll.pipe';
 
 
 
 @NgModule({
   declarations: [
-    IdToNameBookPipe
+    IdToNameDollPipe
   ],
   imports: [
     CommonModule
   ],
   exports:[
-    IdToNameBookPipe
+    IdToNameDollPipe
   ]
 })
-export class PipeBookModule { }
+export class PipeDollModule { }

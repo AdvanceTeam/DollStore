@@ -132,7 +132,7 @@ const deleteProduct = (productID) =>{
 
 
 router.route('/deleteUser/:id').delete((req,res)=>{
-    console.log("express delete bool");
+    console.log("express delete dollst");
     //console.log("backend",req.body);
     console.log("นี้ นี้",req.params.id);
     deleteProduct(req.params.id).then( result => {
