@@ -48,10 +48,18 @@ export class ManageproductComponent implements OnInit {
       this.bgColor = 'rgb(0,0,0)'
       this.fontColor = 'rgb(255,255,255)';
     }
-    // this.addproductComponent.bgColor = this.theme;
     this.addproductComponent.changeTheme();
     
     this.editproductComponent.changeTheme(this.theme);
+  }
+
+  refresh(){
+    // this.onLoading();
+    window.location.reload();
+  }
+
+  update(){
+    this.onLoading();
   }
 
 

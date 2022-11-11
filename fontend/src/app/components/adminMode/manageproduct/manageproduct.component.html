@@ -64,13 +64,11 @@
 
         <div class="col-md-5" [ngStyle]="{'background-color': bgColor}">
             <h2 [ngStyle]="{'color': fontColor}">Add | Edit | Delete Zone</h2>
-            <app-addproduct [themeColor]= theme (messageEvent)="onLoading()" ></app-addproduct>
+            <app-addproduct [themeColor]= theme (messageEvent)="refresh()" ></app-addproduct>
             <hr />
-            <app-editproduct></app-editproduct>
+            <app-editproduct (messageEvent)="update()" ></app-editproduct>
             <hr />
-            <app-deleteproduct></app-deleteproduct>
-
-
+            <app-deleteproduct (messageEvent)="update()"></app-deleteproduct>
         </div>
     </div>
 

@@ -34,6 +34,7 @@ export class AddproductComponent implements OnInit {
   //========== theme mode ==========
   @Input()
   themeColor!: string;
+
   @Output()
   messageEvent = new EventEmitter<string>();
 
@@ -42,6 +43,9 @@ export class AddproductComponent implements OnInit {
 
   fontColor!: String;
   bgColor!: String;
+
+
+  
   
 
   changeTheme(){
@@ -63,6 +67,7 @@ export class AddproductComponent implements OnInit {
     //this.themeColor = 'light';
     this.fontColor = this.darkColor;
     this.bgColor = this.lightColor;
+
   }
 
 
@@ -79,9 +84,8 @@ export class AddproductComponent implements OnInit {
         console.log(err);
       }
     }
-     
-    );
     
+    );
   }
 
   load() {

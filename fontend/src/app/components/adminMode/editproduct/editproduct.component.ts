@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { DollService } from '../../../services/doll.service'
@@ -10,9 +10,6 @@ import { PromotionService } from 'src/app/services/promotion.service';
   styleUrls: ['./editproduct.component.css']
 })
 export class EditproductComponent implements OnInit {
-
-  productPromotion: string[] = ['Sale Sale', 'SaSa LeLe', 'Sale99'];
-  productName: string[] = ['Pikachu', 'Charmender', 'Eevee'];
 
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -26,6 +23,7 @@ export class EditproductComponent implements OnInit {
 
   products: any
   @Input() itemid: any;
+  @Output() messageEvent = new EventEmitter<string>();
 
   previewLoaded: boolean = false;
   promotions: any;
@@ -69,6 +67,7 @@ export class EditproductComponent implements OnInit {
         console.log(data)
         alert('Product updated successfully');
         this.productForm.reset();
+        this.messageEvent.emit(data);
       },
       err => {
         console.log(err);
