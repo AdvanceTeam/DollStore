@@ -24,15 +24,6 @@ export class OrderService {
     }))
   }
 
-  deleteProduct(product : any){
-    let token = this.local.get('user').token
-    let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.post<any>('http://localhost:3000/dollstore/deleteorder', product,{headers:head_object})
-    .pipe(map(data =>{
-      return data;
-    }))
-  }
-
   addOrder(product : any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
@@ -44,13 +35,5 @@ export class OrderService {
     }))
   }
 
-  updateStateSend(item:any){
-    let token = this.local.get('user').token
-    let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/dollstore/updateStateOrder', item,{headers:head_object})
-    .pipe(map(data =>{
-      return data;
-    }))
-  }
 
 }

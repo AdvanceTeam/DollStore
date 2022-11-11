@@ -51,6 +51,37 @@
   
     <div class="col-md-6">
       <app-detail></app-detail>
+
+      <div style="margin-top: 30px;margin-left: 10px;">
+        <button mat-raised-button color="primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" >address</button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Please give information</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3" [formGroup]="myGroup">
+                  <label for="exampleFormControlInput1" class="form-label">give address</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" formControlName='location'>
+                  <div *ngIf="validateLocation.invalid && (validateLocation.dirty || validateLocation.touched)" class="alert-danger">
+                      <div *ngIf="validateLocation.errors?.required">
+                        Please give address
+                      </div>
+  
+                    </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancle</button>
+            <button type="button" class="btn btn-primary" *ngIf="!validateLocation.invalid && (validateLocation.dirty || validateLocation.touched)" (click)="confirmOrder()" data-bs-dismiss="modal">submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>  
 
