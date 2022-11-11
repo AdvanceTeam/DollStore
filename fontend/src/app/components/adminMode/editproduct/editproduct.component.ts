@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { DollService } from '../../../services/doll.service'
@@ -11,21 +11,20 @@ import { PromotionService } from 'src/app/services/promotion.service';
 })
 export class EditproductComponent implements OnInit {
 
-  productPromotion: string[] = ['Sale Sale', 'SaSa LeLe', 'Sale99'];
-  productName: string[] = ['Pikachu', 'Charmender', 'Eevee'];
-
   productForm = new FormGroup({
     price: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required]),
     detail: new FormControl('', [Validators.required]),
     promotion: new FormControl(''),
     file: new FormControl('', [Validators.required]),
-    img: new FormControl('',[Validators.required]),
+    img: new FormControl('', [Validators.required]),
   });
 
   productid!: any;
 
   products: any
+  @Output() messageEvent = new EventEmitter<string>();
+
   selectedname!:any
   previewLoaded: boolean = false;
   promotions: any;
@@ -64,6 +63,7 @@ export class EditproductComponent implements OnInit {
   }
 
   UpdateProduct() {
+    console.log(this.productid);
     this.ps.updateDoll(
       this.productid,
       this.productForm.value
@@ -71,12 +71,15 @@ export class EditproductComponent implements OnInit {
       data => {
         console.log(data)
         alert('Product updated successfully');
+        // this.productForm.reset();
       },
       err => {
         console.log(err);
       }
     );
+    this.messageEvent.emit("ส่งแล้ว");
   }
+  
 
   onChangeImg(e: any) {
     if (e.target.files.length > 0) {

@@ -168,8 +168,6 @@ const deleteProduct = (productID) => {
     });
 }
 
-
-
 router.route('/deletedoll/:id').delete(authorization, (req, res) => {
     console.log("express delete dollst");
     //console.log("backend",req.body);
