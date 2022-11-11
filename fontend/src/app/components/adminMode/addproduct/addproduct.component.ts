@@ -16,11 +16,11 @@ export class AddproductComponent implements OnInit {
 
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
-    stock: new FormControl('', [Validators.required]),
-    detail: new FormControl(''),
-    promotion: new FormControl(''),
-    file: new FormControl(''),
+    price: new FormControl('', [Validators.required,Validators.min(1)]),
+    stock: new FormControl('', [Validators.required,Validators.min(1)]),
+    detail: new FormControl('', [Validators.required]),
+    promotion: new FormControl('', [Validators.required]),
+    file: new FormControl('',[Validators.required]),
     img: new FormControl('',[Validators.required]),
   });
 
@@ -125,6 +125,31 @@ export class AddproductComponent implements OnInit {
       }
     }
   }
+
+  get name() {
+    return this.productForm.get('name');
+  }
+
+  get price() {
+    return this.productForm.get('price');
+  }
+
+  get stock() {
+    return this.productForm.get('stock');
+  }
+
+  get detail() {
+    return this.productForm.get('detail');
+  }
+
+  get file() {
+    return this.productForm.get('file');
+  }
+
+  get promotion() {
+    return this.productForm.get('promotion');
+  }
+
   // onChangeImg(e: any) {
   //   if (e.target.files.length > 0) {
   //     const file = e.target.files[0];

@@ -23,12 +23,12 @@
                                 <div class="input-container">
                                     <label for="">Product Name :</label>
                                     <input type="text" class="form-control" formControlName="name">
-                                    <!-- <div *ngIf="name?.errors && (name?.dirty || name?.touched)"
-                                                class="alert alert-danger">
-                                                <div *ngIf="name?.errors?.['required']">
-                                                    name is required
-                                                </div>
-                                            </div> -->
+                                    <div *ngIf="name?.errors && (name?.dirty || name?.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="name?.errors?.['required']">
+                                            name is required
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -36,30 +36,30 @@
                                 <div class="input-container">
                                     <label for="">Price : </label>
                                     <input type="text" class="form-control" formControlName="price">
-                                    <!-- <div *ngIf="price?.errors && (price?.dirty || price?.touched)"
-                                                class="alert alert-danger">
-                                                <div *ngIf="price?.errors?.['required']">
-                                                    price is required
-                                                </div>
-                                                <div *ngIf="price?.errors?.['min']">
-                                                    price must be upper than 1
-                                                </div>
-                                            </div> -->
+                                    <div *ngIf="price?.errors && (price?.dirty || price?.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="price?.errors?.['required']">
+                                            price is required
+                                        </div>
+                                        <div *ngIf="price?.errors?.['min']">
+                                            price must be upper than 1
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Stock : </label>
                                     <input type="text" class="form-control" formControlName="stock">
-                                    <!-- <div *ngIf="stock?.errors && (stock?.dirty || stock?.touched)"
-                                                class="alert alert-danger">
-                                                <div *ngIf="stock?.errors?.['required']">
-                                                    stock is required
-                                                </div>
-                                                <div *ngIf="stock?.errors?.['min']">
-                                                    stock must be upper than 1
-                                                </div>
-                                            </div> -->
+                                    <div *ngIf="stock?.errors && (stock?.dirty || stock?.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="stock?.errors?.['required']">
+                                            stock is required
+                                        </div>
+                                        <div *ngIf="stock?.errors?.['min']">
+                                            stock must be upper than 1
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -74,6 +74,12 @@
                                                 {{item.name}}
                                             </option>
                                         </select>
+                                        <div *ngIf="promotion?.errors && (promotion?.dirty || promotion?.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="promotion?.errors?.['required']">
+                                                Please select the promotion
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +88,13 @@
                                     <label for="">Detail :</label>
                                     <textarea class="form-control" rows="5" id="detail"
                                         formControlName="detail"></textarea>
+                                    <div *ngIf="detail?.errors && (detail?.dirty || detail?.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="detail?.errors?.['required']">
+                                            Please insert the detail
+                                        </div>
+                                    </div>
                                     <br />
-                                    <!-- <textarea [(ngModel)]="comment" class="form-control" rows="5" id="comment"></textarea><br/> -->
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -94,12 +105,12 @@
                                     <!-- <input type="file" class="form-control-file" formControlName="file"> -->
                                     <input type="file" class="form-control-file" formControlName='file'
                                         (change)="onChangeImg($event)">
-                                    <!-- <div *ngIf="file?.errors && (file?.dirty || file?.touched)"
-                                                class="alert alert-danger">
-                                                <div *ngIf="file?.errors?.['required']">
-                                                    Image is required
-                                                </div>
-                                            </div> -->
+                                    <div *ngIf="file?.errors && (file?.dirty || file?.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="file?.errors?.['required']">
+                                            Please drop the image
+                                        </div>
+                                    </div>
                                     <div class="row" style="margin-top: 20px;">
                                         <div class="col-md-3">
 
