@@ -4,6 +4,9 @@ import { LocalStorageService } from 'angular-web-storage';
 import { Router } from '@angular/router';
 import { CartV2Service } from 'src/app/services/cart-v2.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms'
+import Swal from 'sweetalert2'
+import { OrderService } from 'src/app/services/order.service'
+
 
 @Component({
   selector: 'app-listproduct',
@@ -46,7 +49,8 @@ export class ListproductComponent implements OnInit {
     private DollService: DollService, 
     public local:LocalStorageService,
     private router: Router,
-    private CartV2Service:CartV2Service) 
+    private CartV2Service:CartV2Service,
+    private OrderService:OrderService) 
   {
 
   }
@@ -167,6 +171,45 @@ export class ListproductComponent implements OnInit {
     this.local.clear();
     const loggedIn = localStorage.getItem('STATE');
     this.router.navigate(['login']);
+  }
+
+  confirmOrder(){
+    this.order.userID = this.local.get('user').result.id;
+    Swal.fire({
+      title: 'ยืนยันการสั่งซื้อ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ยืนยัน',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.order.address = this.myGroup.value.location;
+        // console.log(this.order);
+        this.OrderService.addOrder(this.order).subscribe(
+          data => {
+
+            // console.log(data);
+            this.order = { userID:'',totalPayment:0,address:'', list:[] };
+            this.sumDoll = 0;
+            this.getCartById();
+            
+          },
+          err => {
+           throw err;
+          }
+        )
+        
+        
+
+        Swal.fire(
+          'บันทึก!',
+          'ระบบได้บันทึกคำสั่งซื้อแล้ว',
+          'success'
+        )
+      }
+    })
   }
 
   get validateLocation() { return this.myGroup.get('location') as FormControl }
