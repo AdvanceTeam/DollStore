@@ -15,7 +15,6 @@ export class EditproductComponent implements OnInit {
   productName: string[] = ['Pikachu', 'Charmender', 'Eevee'];
 
   productForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required]),
     detail: new FormControl('', [Validators.required]),
@@ -27,7 +26,7 @@ export class EditproductComponent implements OnInit {
   productid!: any;
 
   products: any
-
+  selectedname!:any
   previewLoaded: boolean = false;
   promotions: any;
 
@@ -118,6 +117,7 @@ export class EditproductComponent implements OnInit {
     try {
       this.DollService.getProducts().subscribe(
         data => {
+
           this.products = data;
           console.log(data)
         },
@@ -129,8 +129,9 @@ export class EditproductComponent implements OnInit {
     }
   }
 
-  itemid(id : any){
-    this.productid = id;
+  Onclickitemid(event : any){
+    console.log(event.target.value)
+    this.productid = this.products[Number(event.target.value)]._id;
   }
   get file() {
     return this.productForm.get('file');
