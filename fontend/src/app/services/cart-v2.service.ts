@@ -12,7 +12,7 @@ export class CartV2Service {
   updateCart(product: any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/additemtocart', product,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/dollstore/additemtocart', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -21,7 +21,7 @@ export class CartV2Service {
   minusCart(product: any){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.put<any>('http://localhost:3000/bookstore/minustocart', product,{headers:head_object})
+    return this.http.put<any>('http://localhost:3000/dollstore/minustocart', product,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))
@@ -31,7 +31,7 @@ export class CartV2Service {
   getCartByID(id: string){
     let token = this.local.get('user').token
     let head_object = new HttpHeaders().set("authorization",token)
-    return this.http.get<any>('http://localhost:3000/bookstore/getcart/'+id,{headers:head_object})
+    return this.http.get<any>('http://localhost:3000/dollstore/getcart/'+id,{headers:head_object})
     .pipe(map(data =>{
       return data;
     }))

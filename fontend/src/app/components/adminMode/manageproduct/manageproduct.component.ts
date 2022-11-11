@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter ,ViewChild } from '@angular/core';
-import { BookService } from 'src/app/services/book.service';
+import { DollService } from 'src/app/services/doll.service';
 
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { EditproductComponent } from '../editproduct/editproduct.component';
@@ -26,7 +26,7 @@ export class ManageproductComponent implements OnInit {
   theme: string ='light';
 
 
-  constructor(private BookService: BookService) {
+  constructor(private DollService: DollService) {
     this.onLoading();
   }
 
@@ -61,7 +61,7 @@ export class ManageproductComponent implements OnInit {
 
   onLoading(){
     try{
-      this.BookService.getProducts().subscribe(
+      this.DollService.getProducts().subscribe(
         data =>{
           this.products = data;
           console.log(data)

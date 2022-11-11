@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { BookService } from '../../../services/book.service'
+import { DollService } from '../../../services/doll.service'
 import { PromotionService } from 'src/app/services/promotion.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class EditproductComponent implements OnInit {
   fontColor!: String;
   bgColor!: String;
 
-  constructor(private ps: BookService, private promotionservice: PromotionService, private BookService: BookService) {
+  constructor(private ps: DollService, private promotionservice: PromotionService, private DollService: DollService) {
     this.loadpromotion()
     this.onLoadingProduct()
   }
@@ -63,7 +63,7 @@ export class EditproductComponent implements OnInit {
   }
 
   UpdateProduct() {
-    this.ps.updateBook(this.itemid).subscribe(
+    this.ps.updateDoll(this.itemid).subscribe(
       data => {
         console.log(data)
         alert('Product updated successfully');
@@ -112,7 +112,7 @@ export class EditproductComponent implements OnInit {
 
   onLoadingProduct() {
     try {
-      this.BookService.getProducts().subscribe(
+      this.DollService.getProducts().subscribe(
         data => {
           this.products = data;
           console.log(data)

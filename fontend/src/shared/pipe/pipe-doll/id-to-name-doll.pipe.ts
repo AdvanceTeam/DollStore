@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BookService } from 'src/app/services/book.service';
+import { DollService } from 'src/app/services/doll.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 @Pipe({
-  name: 'idToNameBook'
+  name: 'idToNameDoll'
 })
-export class IdToNameBookPipe implements PipeTransform {
+export class IdToNameDollPipe implements PipeTransform {
   
-  dataBook!:[
+  dataDoll!:[
     {
         _id: String,
         name: String,
@@ -20,10 +20,10 @@ export class IdToNameBookPipe implements PipeTransform {
     }
   ];
 
-  constructor(private http:HttpClient,private bookService:BookService) { 
-    this.bookService.getProducts().subscribe(
+  constructor(private http:HttpClient,private dollService:DollService) { 
+    this.dollService.getProducts().subscribe(
       data =>{
-        this.dataBook = data
+        this.dataDoll = data
       },
       err =>{
 
@@ -31,12 +31,12 @@ export class IdToNameBookPipe implements PipeTransform {
     )
   }
 
-   transform(idBookHTML:String): Observable<string>  {
+   transform(idDollHTML:String): Observable<string>  {
     console.log("transform working");
-    return this.bookService.getProducts().pipe(
+    return this.dollService.getProducts().pipe(
       map(data =>{
         for (let index = 0; index < data.length; index++) {
-          if (idBookHTML == data[index]._id) {
+          if (idDollHTML == data[index]._id) {
             console.log(data[index].name);  
             return data[index].name
           }
