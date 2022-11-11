@@ -39,6 +39,7 @@ export class ManageproductComponent implements OnInit {
       this.BookService.getProducts().subscribe(
         data =>{
           this.products = data;
+          console.log(data)
         },
         err =>{
           console.log(err)

@@ -21,13 +21,13 @@ export class DeleteproductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteUser(item:any){
+  deleteproduct(item:any){
     console.log("กด delete",item);
     
     try {
       this.ps.deleteProduct(item).subscribe(
         data => {
-          //this.products = data;
+          this.products = data;
         },
         err => {
           console.log(err);
