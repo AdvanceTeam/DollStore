@@ -198,11 +198,11 @@ router.route('/deletedoll/:id').delete(authorization, (req, res) => {
 //     });
 // }
 
-router.route('/updateData').put(authorization, (req, res) => {
+router.route('/updateData/:id').put(authorization, (req, res) => {
 
-    var query = { "_id": req.body._id };
+    // var query = { "_id": req.body._id };
 
-    Doll.findByIdAndUpdate(query, { "price": req.body.price,"stock" : req.body.stock,"detail": req.body.stock,"promotion": req.body.promotion,"file": req.body.file}, { new: true }, function (err, doc) {
+    Doll.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, doc) {
         if (err) return res.send(500, { error: err });
         return res.send('Succesfully saved.');
     });

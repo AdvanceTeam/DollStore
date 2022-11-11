@@ -21,10 +21,12 @@ export class EditproductComponent implements OnInit {
     detail: new FormControl('', [Validators.required]),
     promotion: new FormControl(''),
     file: new FormControl('', [Validators.required]),
+    img: new FormControl('',[Validators.required]),
   });
 
+  productid!: any;
+
   products: any
-  @Input() itemid: any;
 
   previewLoaded: boolean = false;
   promotions: any;
@@ -63,11 +65,13 @@ export class EditproductComponent implements OnInit {
   }
 
   UpdateProduct() {
-    this.ps.updateDoll(this.itemid).subscribe(
+    this.ps.updateDoll(
+      this.productid,
+      this.productForm.value
+      ).subscribe(
       data => {
         console.log(data)
         alert('Product updated successfully');
-        this.productForm.reset();
       },
       err => {
         console.log(err);
@@ -125,7 +129,12 @@ export class EditproductComponent implements OnInit {
     }
   }
 
-
+  itemid(id : any){
+    this.productid = id;
+  }
+  get file() {
+    return this.productForm.get('file');
+  }
   resetForm() {
     this.productForm.reset();
     this.previewLoaded = false;
