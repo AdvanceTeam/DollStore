@@ -66,7 +66,7 @@
             <h2 [ngStyle]="{'color': fontColor}">Add | Edit | Delete Zone</h2>
             <app-addproduct [themeColor]= theme (messageEvent)="refresh()" ></app-addproduct>
             <hr />
-            <app-editproduct (messageEvent)="update()" ></app-editproduct>
+            <app-editproduct (messageEvent)="refresh()" ></app-editproduct>
             <hr />
             <app-deleteproduct (messageEvent)="update()"></app-deleteproduct>
         </div>

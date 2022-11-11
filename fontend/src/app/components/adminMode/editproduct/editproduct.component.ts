@@ -63,6 +63,7 @@ export class EditproductComponent implements OnInit {
   }
 
   UpdateProduct() {
+    console.log(this.productid);
     this.ps.updateDoll(
       this.productid,
       this.productForm.value
@@ -78,6 +79,7 @@ export class EditproductComponent implements OnInit {
       }
     );
   }
+  
 
   onChangeImg(e: any) {
     if (e.target.files.length > 0) {
