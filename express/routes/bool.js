@@ -22,6 +22,7 @@ const bookSchema = Schema({
     detail: String,
     promotion: String,
     file: String,
+    img: String,
 
 }, {
     collection: 'books'

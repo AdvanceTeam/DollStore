@@ -17,12 +17,14 @@
         <div class="navbar-nav">
           <!-- <button class="nav-link" routerLink="manageproduct" routerLinkActive="active" style="color: rgb(0, 0, 0);margin-left: 50px;background-color: #55f580;" >ManagePrduct</button> -->
           <button class="nav-link" routerLink="managepromotion" routerLinkActive="active" style="color: rgb(0, 0, 0);background-color: #82f7a1;font-size: 20px;margin-left: 40px;border: solid;border-radius: 20px;" >ManagePromotion</button>
-
         </div>
+        <div></div>
       </div>
+      
       <div class="d-flex">
         
-        <span class="navbar-brand"  style="color:rgb(0, 0, 0);margin-right: 50px;margin-top: 10px;">user : {{user}}</span> 
+        <span class="navbar-brand"  style="color:rgb(0, 0, 0);margin-right: 50px;margin-top: 10px;">
+          user : {{user}}</span> 
         <button class="btn btn-danger" type="submit" (click)="signout()">log out</button>
       </div>
     </div>

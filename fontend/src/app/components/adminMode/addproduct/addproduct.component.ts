@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BookService } from '../../../services/book.service'
 import { PromotionService } from 'src/app/services/promotion.service';
+import { ManageproductComponent } from '../manageproduct/manageproduct.component';
 
 @Component({
   selector: 'app-addproduct',
@@ -17,28 +18,57 @@ export class AddproductComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required]),
-    detail: new FormControl('', [Validators.required]),
+    detail: new FormControl(''),
     promotion: new FormControl(''),
-    file: new FormControl('', [Validators.required]),
+    file: new FormControl(''),
+    img: new FormControl('',[Validators.required]),
   });
 
-  
   previewLoaded: boolean = false;
 
-  constructor(private ps: BookService,private promotionservice: PromotionService) {
+  constructor(private ps: BookService, private promotionservice: PromotionService) {
     this.loadpromotion()
-   }
+  }
+
+  @Output() messageEvent = new EventEmitter<string>();
+
+  //========== theme mode ==========
+  themeColor!: string;
+  lightColor: String="rgb(220, 252, 230)";
+  darkColor : String="rgb(63,71,66)";
+
+  fontColor!: String;
+  bgColor!: String;
+
+  changeTheme(theme: string){
+    if(theme =='light'){
+      this.fontColor = this.darkColor;
+      this.bgColor = this.lightColor;
+      // console.log(this.fontColor)
+    }
+    else if(theme =='dark'){
+      this.fontColor = this.lightColor;
+      this.bgColor = this.darkColor;
+      // console.log(this.fontColor)
+    }
+    
+  }
+
 
   ngOnInit(): void {
+    //this.themeColor = 'light';
+    this.fontColor = this.darkColor;
+    this.bgColor = this.lightColor;
   }
+
 
   addProduct() {
     this.ps.addProduct(this.productForm.value).subscribe({
       next:data => {
         console.log(data)
-          alert('Product added successfully');
-          this.resetForm();
-          this.load();
+        alert('Product added successfully');
+        this.resetForm();
+        this.load();
       },
       error:err => {
         console.log(err);
@@ -48,35 +78,35 @@ export class AddproductComponent implements OnInit {
     );
   }
 
-  load(){
-    try{
+  load() {
+    try {
       this.ps.getProducts().subscribe({
-        next:data => {
+        next: data => {
           this.productForm = data;
           console.log(data)
         },
-        error:err => {
+        error: err => {
           console.log(err);
         }
       })
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
 
-  
-  loadpromotion(){
-    try{
+
+  loadpromotion() {
+    try {
       this.promotionservice.getPromotion().subscribe({
-        next:data => {
+        next: data => {
           this.promotions = data;
           console.log(data)
         },
-        error:err => {
+        error: err => {
           console.log(err);
         }
       })
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }

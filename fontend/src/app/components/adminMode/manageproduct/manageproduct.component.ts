@@ -1,5 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter ,ViewChild } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
+
+import { AddproductComponent } from '../addproduct/addproduct.component';
+import { EditproductComponent } from '../editproduct/editproduct.component';
 
 @Component({
   selector: 'app-manageproduct',
@@ -11,26 +14,48 @@ export class ManageproductComponent implements OnInit {
   products : any
 
   @Output() messageEvent = new EventEmitter<string>();
-  themeColor: string = '';
+
+  @ViewChild(AddproductComponent)
+  addproductComponent!: AddproductComponent;
+
+  @ViewChild(EditproductComponent)
+  editproductComponent!: EditproductComponent;
+
+  themeColor: string = 'rgb(255,255,255)';
+  fontColor: string = 'rgb(0,0,0)';
   theme: string ='light';
+
 
   constructor(private BookService: BookService) {
     this.onLoading();
   }
 
   ngOnInit(): void {
+    this.themeColor = 'rgb(255,255,255)';
+    this.fontColor = 'rgb(0,0,0)';
+    this.theme ='light';
+
   }
 
   toggleTheme(){
-    this.theme = 'dark' ? 'light' : 'dark'
+    if(this.theme == 'dark'){
+      this.theme = 'light';
+      this.themeColor = 'rgb(255,255,255)';
+      this.fontColor = 'rgb(0,0,0)';
+    }else{
+      this.theme = 'dark';
+      this.themeColor = 'rgb(0,0,0)'
+      this.fontColor = 'rgb(255,255,255)';
+    }
+    this.addproductComponent.themeColor = this.theme;
+    this.addproductComponent.changeTheme(this.theme);
+    
+    this.editproductComponent.changeTheme(this.theme);
+
+    this.ngStyleMethod();
   }
 
   ngStyleMethod(){
-    if(this.theme == 'light'){
-      this.themeColor = 'rgb(255,255,255)'
-    }else if(this.themeColor == 'dark'){
-      this.themeColor = 'rgb(0,0,0)'
-    }
     this.messageEvent.emit(this.themeColor)
   }
 

@@ -20,13 +20,14 @@
 </style>
 
 <div class="rows">
-    <div class="col-md-12" style="background-color:rgb(220, 252, 230); margin: 10px; border-radius: 25px;">
+    <div class="col-md-12" style=" margin: 10px; border-radius: 25px;" [ngStyle]="{'background-color': bgColor}">
         <div class="card-title">
             <form [formGroup]="productForm">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" [ngStyle]="{'color': fontColor}">
                             <div class="row">
+                                <h2  >Edit Product</h2>
                                 <div class="col-md-12">
                                     Product Name:
                                 </div>
