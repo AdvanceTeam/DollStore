@@ -24,7 +24,7 @@
     </style>
 </head>
 
-<body [ngStyle]="{'background-color': themeColor}">
+<body [ngStyle]="{'background-color': bgColor}">
 
     <h2 [ngStyle]="{'color': fontColor}">Theme Mode : 
         <button type="button" class="btn btn-primary btn-sm float-right" style="background-color:rgb(79, 161, 105);" 
@@ -32,7 +32,7 @@
     </h2>
 
     <div class="row">
-        <div class="col-md-7" [ngStyle]="{'background-color': themeColor}">
+        <div class="col-md-7" [ngStyle]="{'background-color': bgColor}">
             <h2 [ngStyle]="{'color': fontColor}">SHOW PRODUCT</h2>
             <div class="table-responsive-md"
                 style="background-color:rgb(220, 252, 230); margin: 10px; padding: 20px; border-radius: 25px;">
@@ -62,15 +62,13 @@
             </div>
         </div>
 
-        <div class="col-md-5" [ngStyle]="{'background-color': themeColor}">
+        <div class="col-md-5" [ngStyle]="{'background-color': bgColor}">
             <h2 [ngStyle]="{'color': fontColor}">Add | Edit | Delete Zone</h2>
-            <app-addproduct></app-addproduct>
+            <app-addproduct [themeColor]= theme (messageEvent)="refresh()" ></app-addproduct>
             <hr />
-            <app-editproduct></app-editproduct>
+            <app-editproduct (messageEvent)="refresh()" ></app-editproduct>
             <hr />
-            <app-deleteproduct></app-deleteproduct>
-
-
+            <app-deleteproduct (messageEvent)="update()"></app-deleteproduct>
         </div>
     </div>
 

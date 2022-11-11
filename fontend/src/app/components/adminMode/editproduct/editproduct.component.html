@@ -27,25 +27,25 @@
                     <div class="row">
                         <div class="col-md-12" [ngStyle]="{'color': fontColor}">
                             <div class="row">
-                                <h2  >Edit Product</h2>
+                                <h2>Edit Product</h2>
                                 <div class="col-md-12">
                                     Product Name:
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <select class="form-control" formControlName="name">
+                                        <select class="form-control" (change)="Onclickitemid($event)">
                                           <option value=""></option>
-                                          <option *ngFor="let item of products; index as i">
+                                          <option *ngFor="let item of products; index as i" [value]="i">
                                             {{item.name}}
-                                            {{itemid(item._id)}}
                                         </option>
                                         </select>
-                                      </div>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
-                                    <label for="">Price :  </label>
+                                    <label for="">Price : </label>
                                     <input type="price" class="form-control" formControlName="price">
                                 </div>
                             </div>
@@ -62,18 +62,19 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <select class="form-control" formControlName="promotion">
-                                          <option value=""></option>
-                                          <option *ngFor="let item of promotions; index as i">
-                                            {{item.name}}
-                                        </option>
+                                            <option value=""></option>
+                                            <option *ngFor="let item of promotions; index as i">
+                                                {{item.name}}
+                                            </option>
                                         </select>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Detail :</label>
-                                    <textarea class="form-control" rows="5" id="detail" formControlName='detail'></textarea><br />
+                                    <textarea class="form-control" rows="5" id="detail"
+                                        formControlName='detail'></textarea><br />
                                     <!-- <textarea [(ngModel)]="comment" class="form-control" rows="5" id="comment"></textarea><br/> -->
                                 </div>
                             </div>
@@ -85,12 +86,7 @@
                                     <!-- <input type="file" class="form-control-file" formControlName="file"> -->
                                     <input type="file" class="form-control-file" formControlName='file'
                                         (change)="onChangeImg($event)">
-                                    <div *ngIf="file?.errors && (file?.dirty || file?.touched)"
-                                        class="alert alert-danger">
-                                        <div *ngIf="file?.errors?.['required']">
-                                            Please drop the image
-                                        </div>
-                                    </div>
+
                                     <div class="row" style="margin-top: 20px;">
                                         <div class="col-md-3">
 
@@ -109,7 +105,7 @@
                     <div class="row">
                         <div class="col-md-12" style="margin-top: 20px; margin-bottom: 20px;">
                             <button type="button" class="btn btn-primary" style="position: absolute;"
-                            (click)="UpdateProduct()">Update</button>&nbsp;
+                                (click)="UpdateProduct()">Update</button>&nbsp;
                             <!-- <button type="button" class="btn btn-warning"  (click)="signup()">Sign up</button>&nbsp; -->
                             <!-- <button type="button" class="btn btn-secondary" (click)="goToDashBoard()">goToDashboard</button>&nbsp; -->
                             <!-- <button type="button" class="btn btn-danger" (click)="signout()">Sign out</button> -->

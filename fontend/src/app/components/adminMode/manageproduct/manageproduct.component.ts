@@ -13,7 +13,8 @@ export class ManageproductComponent implements OnInit {
 
   products : any
 
-  @Output() messageEvent = new EventEmitter<string>();
+  @Input()
+  data!: any;
 
   @ViewChild(AddproductComponent)
   addproductComponent!: AddproductComponent;
@@ -21,7 +22,7 @@ export class ManageproductComponent implements OnInit {
   @ViewChild(EditproductComponent)
   editproductComponent!: EditproductComponent;
 
-  themeColor: string = 'rgb(255,255,255)';
+  bgColor: string = 'rgb(255,255,255)';
   fontColor: string = 'rgb(0,0,0)';
   theme: string ='light';
 
@@ -31,7 +32,7 @@ export class ManageproductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeColor = 'rgb(255,255,255)';
+    this.bgColor = 'rgb(255,255,255)';
     this.fontColor = 'rgb(0,0,0)';
     this.theme ='light';
 
@@ -40,24 +41,28 @@ export class ManageproductComponent implements OnInit {
   toggleTheme(){
     if(this.theme == 'dark'){
       this.theme = 'light';
-      this.themeColor = 'rgb(255,255,255)';
+      this.bgColor = 'rgb(255,255,255)';
       this.fontColor = 'rgb(0,0,0)';
     }else{
       this.theme = 'dark';
-      this.themeColor = 'rgb(0,0,0)'
+      this.bgColor = 'rgb(0,0,0)'
       this.fontColor = 'rgb(255,255,255)';
     }
-    this.addproductComponent.themeColor = this.theme;
-    this.addproductComponent.changeTheme(this.theme);
+    this.addproductComponent.changeTheme();
     
     this.editproductComponent.changeTheme(this.theme);
-
-    this.ngStyleMethod();
   }
 
-  ngStyleMethod(){
-    this.messageEvent.emit(this.themeColor)
+  refresh(){
+    // this.onLoading();
+    window.location.reload();
   }
+
+  update(){
+    this.onLoading();
+    this.editproductComponent.onLoadingProduct();
+  }
+
 
   onLoading(){
     try{

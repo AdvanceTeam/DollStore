@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { DollService } from '../../../services/doll.service'
@@ -14,6 +14,8 @@ export class DeleteproductComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
+  @Output() messageEvent = new EventEmitter<string>();
+
   constructor(private ps: DollService) { 
     this.onLoading();
   }
@@ -28,6 +30,7 @@ export class DeleteproductComponent implements OnInit {
       this.ps.deleteProduct(item).subscribe(
         data => {
           this.products = data;
+          this.messageEvent.emit(data);
         },
         err => {
           console.log(err);
