@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
 export class SearchComponent implements OnInit{
     
   search: any;
-  keyword = new FormControl('');
+  // keyword = new FormControl('');
   help!: number;
   @Output() messageEvent = new EventEmitter<any>();
   
@@ -36,30 +36,30 @@ export class SearchComponent implements OnInit{
       console.log(error)
     }
   }
-  onSearch2(keyword:any){
-    try {
-      this.ps.getBySearch(keyword).subscribe( //การเรียกใช้ตัว product
-        data => {
-          this.search = data;
-          this.toProduct(this.search)
-      },
-        err => {
-          console.log(err)
-        });
-    }catch (error) {
-      console.log(error)
-    }
-  }
+  // onSearch2(keyword:any){
+  //   try {
+  //     this.ps.getBySearch(keyword).subscribe( //การเรียกใช้ตัว product
+  //       data => {
+  //         this.search = data;
+  //         this.toProduct(this.search)
+  //     },
+  //       err => {
+  //         console.log(err)
+  //       });
+  //   }catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
-  onSearch1(){
-    if(this.keyword.value == ''){
-      this.onLoading();
-      console.log('1')
-    }
-    else{
-      this.onSearch2(this.keyword.value);
-    }
-  }
+  // onSearch1(){
+  //   if(this.keyword.value == ''){
+  //     this.onLoading();
+  //     console.log('1')
+  //   }
+  //   else{
+  //     this.onSearch2(this.keyword.value);
+  //   }
+  // }
 
   toProduct(item:any){
     this.messageEvent.emit(this.search)
