@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Price : </label>
-                                    <input type="text" class="form-control" formControlName="price">
+                                    <input type="number" class="form-control" formControlName="price">
                                     <div *ngIf="price?.errors && (price?.dirty || price?.touched)"
                                         class="alert alert-danger">
                                         <div *ngIf="price?.errors?.['required']">
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <div class="input-container">
                                     <label for="">Stock : </label>
-                                    <input type="text" class="form-control" formControlName="stock">
+                                    <input type="number" class="form-control" formControlName="stock">
                                     <div *ngIf="stock?.errors && (stock?.dirty || stock?.touched)"
                                         class="alert alert-danger">
                                         <div *ngIf="stock?.errors?.['required']">
